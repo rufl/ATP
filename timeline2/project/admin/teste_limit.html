@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- JQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <!-- Limit Start -->
+    <script language="javascript">
+	function limitChars(textid, limit, infodiv)
+	{
+		var text = $('#'+textid).val();	
+		var textlength = text.length;
+		if(textlength > limit)
+		{
+			$('#' + infodiv).html('O limite' +'&eacute;' + 'de '+limit+' caracteres');
+			$('#'+textid).val(text.substr(0,limit));
+			return false;
+		}
+		else
+		{
+			$('#' + infodiv).html((limit - textlength) +' caracteres.');
+			return true;
+		}
+	}
+
+	$(function(){
+	 	$('#textarea').keyup(function(){
+	 		limitChars('textarea', 20, 'charlimitinfo');
+	 	})
+	});
+	</script>
+	<!-- Limit End -->
+    </head>
+  <body>
+	<form name="journal-comment" style="background-color:#eeeeee; border:1px solid #cccccc; width:500px; height:300px; margin:20px auto; padding:0px">
+			<textarea name="textarea" id="textarea" rows="6" cols="50"></textarea><br />
+	</form>
+  </body>
+  </html>

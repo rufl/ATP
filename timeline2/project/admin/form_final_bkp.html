@@ -2,11 +2,12 @@
 <html>
   <head>
     <!-- JQuery -->
-    <script type='text/javascript' src='http://code.jquery.com/jquery-git.js'></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>    
     <!-- JQuery UI -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>    
     <!-- JQuery Tools-->
-    <script src="http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>
+    <script src="http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>    
+    
     <!-- Uniform Start -->
     <script src="./js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
@@ -43,17 +44,20 @@
       }
     </style>
     <!-- Uniform End -->
+
     <!-- Date Picker Start -->
     <link rel="stylesheet" type="text/css" href="./css/call.css"/>
     <link rel="stylesheet" type="text/css" href="./css/date.css"/>
     <link rel="stylesheet" type="text/css" href="./css/jqueryui/jquery-ui-1.7.2.custom.css"/>
     <!-- Date Picker End -->
+          
     <!-- CLEditor Start -->
     <link rel="stylesheet" type="text/css" href="./css/jquery.cleditor.css" />
     <script type="text/javascript" src="./js/jquery.cleditor.min.js"></script>
+    
     <script type="text/javascript">
       $(document).ready(function() {
-        $("#textarea").cleditor({
+        $("#input").cleditor({
           width:        585, // width not including margins, borders or padding
           height:       250, // height not including margins, borders or padding
           controls:     // controls to add to the toolbar
@@ -85,83 +89,65 @@
                         "", 
           bodyStyle:    // style to assign to document body contained within the editor
                         "margin:4px; font:10pt Arial,Verdana; cursor:text"
-        })[0].focus();
-      });      
-    </script>
-    <!-- CLEditor End -->
-    
-    <!-- Image Field Disabler Start -->
-    <script type='text/javascript'> 
-      $(window).load(function() {
-        var $tipo_select = $('#tipo_select'),
-            $imgupload = $('#imgupload');
-
-        $tipo_select.change(function() {
-          if ($tipo_select.val() == 'imagem') {
-            $imgupload.removeAttr('disabled');
-          } else {
-            $imgupload.attr('disabled', 'disabled').val('');
-          }
-        }).trigger('change'); // added trigger to calculate initial state
+        });
       });
     </script>
-    <!-- Image Field Disabler End --> 
-
-    </head>
+    <!-- CLEditor End -->
+  </head>
   <body>
     <h1>Novo Evento</h1>
     <form id="novo_evento">
       <ul>
         <li>
           <label>Tipo do conte&uacute;do:</label>
-          <select name="tipo_select2" class="select" id="tipo_select">
-            <option value="evento">Evento</option>
-            <option value="milestone">Milestone</option>
-            <option value="imagem">Imagem</option>
-          </select>            
+          <select>
+            <option>Not&iacute;cia</option>
+            <option>Imagem</option>
+            <option>Milestone</option>
+          </select>
         </li>
-        <li>
-          <label>T&iacute;tulo:</label>
-          <input type="text" size="40"/>
-        </li>
-        <li>
-          <label>Texto:</label>
-          <textarea name="textarea" id="textarea" rows="6" cols="50" required="required"></textarea>
-        </li>
-        <li>
-          <label>Data do Evento:</label>
-          <input type="date" name="date" value="Nenhuma Data Escolhida" required="required"/>
-        </li>
-        <!-- Date Picker Locale e Call Start -->
-        <script>
-        // pt-br localization
-           $.tools.dateinput.localize("pt-br",  {
-             months:        'janeiro,fevereiro,mar&ccedil;o,abril,maio,junho,julho,agosto,' +
-                            'setembro,outubro,novembro,dezembro',
-             shortMonths:   'jan,fev,mar,abr,mai,jun,jul,ago,set,out,nov,dez',
-             days:          'segunda,ter&ccedil;a&#45;feira,quarta&#45;feira,quinta&#45;feira,sexta&#45;feira,s&aacute;bado,domingo',      
-             shortDays:     'seg,ter,qua,qui,sex,sab,dom'
-            });
+        <li><label>T&iacute;tulo:</label><input type="text" size="40"/></li>
+        <li><label>Texto:</label></li> 
+        <li><textarea id="input" name="input"></textarea></li>
 
-        // dateinput initialization. the language is specified with lang- option
-        $(":date").dateinput({ 
-          lang: 'pt-br', 
-          format: 'dd/mm/yyyy',
-          offset: [30, 0]
-        });
-        </script>
-        <script>$(":date").dateinput();</script>
-        <!-- Date Picker Locale e Call End -->
+        <li><label>Data do Evento:</label><input type="date" name="date"/></li>
 
-        <label>Enviar Imagem:</label>
+   
+    <!-- Date Picker Locale e Call Start -->
+<script>
+// pt-br localization
+   $.tools.dateinput.localize("pt-br",  {
+     months:        'janeiro,fevereiro,mar&ccedil;o,abril,maio,junho,julho,agosto,' +
+                   	'setembro,outubro,novembro,dezembro',
+     shortMonths:   'jan,fev,mar,abr,mai,jun,jul,ago,set,out,nov,dez',
+     days:          'segunda,ter&ccedil;a&#45;feira,quarta&#45;feira,quinta&#45;feira,sexta&#45;feira,s&aacute;bado,domingo',      
+     shortDays:     'seg,ter,qua,qui,sex,sab,dom'
+    });
+// dateinput initialization. the language is specified with lang- option
+    $(":date").dateinput({ 
+	    lang: 'pt-br', 
+	    format: 'dddd,dd' + de + 'mmmm' + de + 'yyyy',
+	    offset: [50, 50]
+        speed: 'slow', 
+    });
+</script>
+<script>$(":date").dateinput();</script>
+    <!-- Date Picker Locale e Call End -->
+
+<script>
+var limpaForm=function() {$('#input').cleditor.clear(); };
+</script>
+
+        <label>Enviar Imagem:</label>        
         <li>
-          <input type="file" name="imgupload" class="file" id="imgupload"/>
+          <input type="file" />
         </li>
         <li>
-          <input type="submit" />
-          <br>
-          <input type="reset" id="limpar" name="limpar" value="Limpar" onclick="$('#textarea').cleditor()[0].clear()"></li>
-      </ul>
+          <input type="submit" /><br>
+          <input type="reset" /><br>
+          <input type="button" id="limpar" name="limpar" value="Limpar" onclick="limpaForm();" />
+        </li>
+    </ul>
     </form>
   </body>
 </html>

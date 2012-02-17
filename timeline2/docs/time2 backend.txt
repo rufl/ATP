@@ -7,10 +7,16 @@ Frontend
     - http://manos.malihu.gr/tuts/jquery_custom_scrollbar.html
 
 --- Todo
-* Limitar Chars na Textarea.
-* JS - Limpar Textarea via Reset.
-* 
+* Telas Create / Read / Update / Delete
+* Limitar Coluna da Textarea
 
+--- WIP
+
+--- Done
+* JS - Limpar Textarea via Reset. <DONE>
+* Setas Picker <DONE>
+* Hide / Show - Campo Imagem <DONE>
+http://jsfiddle.net/gnarf/GpmSs/2/
 
 
 Backend
@@ -29,12 +35,12 @@ Backend - Componentes -
 
   > Form Framework (Uniform)
     - http://uniformjs.com/ <DONE>
-
+  
   > Date Input (JQuery Tools Date Input)
     - http://flowplayer.org/tools/dateinput/index.html <DONE>
-
+  
   > HTML Editor (CLEditor)  
-    - http://premiumsoftware.net/cleditor/
+    - http://premiumsoftware.net/cleditor/ <DONE>
 
   > Image Upload (Uber Upload Cropper)
     - http://trentrichardson.com/2010/04/12/uberuploadcropper-0-2-with-example/

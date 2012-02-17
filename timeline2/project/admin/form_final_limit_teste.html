@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- JQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>    
+    <!-- JQuery UI -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>    
+    <!-- JQuery Tools-->
+    <script src="http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>
+  
+    <!-- Uniform Start -->
+    <script src="./js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      $(function(){
+        $("input, textarea, select, button").uniform();
+      });
+    </script>
+    <link rel="stylesheet" href="./css/uniform.default.css" type="text/css" media="screen">
+    <style type="text/css" media="screen">
+      body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #666;
+        padding: 40px;
+      }
+      h1 {
+        margin-top: 0;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        margin-bottom: 20px;
+        clear: both;
+      }
+      label {
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 3px;
+        clear: both;
+      }
+    </style>
+    <!-- Uniform End -->
+
+    <!-- Date Picker Start -->
+    <link rel="stylesheet" type="text/css" href="./css/call.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/date.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/jqueryui/jquery-ui-1.7.2.custom.css"/>
+    <!-- Date Picker End -->
+        
+    
+  </head>
+  <body>
+    <h1>Novo Evento</h1>
+    <form id="novo_evento">
+      <ul>
+        <li>
+          <label>Tipo do conte&uacute;do:</label>
+          <select>
+            <option>Not&iacute;cia</option>
+            <option>Imagem</option>
+            <option>Milestone</option>
+          </select>
+        </li>
+        <li><label>T&iacute;tulo:</label><input type="text" size="40"/></li>
+        <li><label>Texto:</label></li> 
+        <li>
+            <textarea name="textarea" id="textarea" rows="6" cols="50"></textarea>
+            <span id="charlimitinfo" style=" float:left; color:#aa3333; font-size:15px; font-family:vardana" >Limite de 500 caracteres.</span>         
+        </li>
+        <li>
+        <label>Data do Evento:</label>
+        <input type="date" name="date"/>
+        </li>
+   
+    <!-- Date Picker Locale e Call Start -->
+<script>
+// pt-br localization
+   $.tools.dateinput.localize("pt-br",  {
+     months:        'janeiro,fevereiro,mar&ccedil;o,abril,maio,junho,julho,agosto,' +
+                   	'setembro,outubro,novembro,dezembro',
+     shortMonths:   'jan,fev,mar,abr,mai,jun,jul,ago,set,out,nov,dez',
+     days:          'segunda,ter&ccedil;a&#45;feira,quarta&#45;feira,quinta&#45;feira,sexta&#45;feira,s&aacute;bado,domingo',      
+     shortDays:     'seg,ter,qua,qui,sex,sab,dom'
+    });
+// dateinput initialization. the language is specified with lang- option
+    $(":date").dateinput({ 
+	    lang: 'pt-br', 
+	    format: 'dddd,dd' + de + 'mmmm' + de + 'yyyy',
+	    offset: [50, 50]
+        speed: 'slow', 
+    });
+</script>
+<script>$(":date").dateinput();</script>
+    <!-- Date Picker Locale e Call End -->
+
+        <label>Enviar Imagem:</label>        
+        <li>
+          <input type="file" />
+        </li>
+        <li>
+          <input type="submit" /><br>
+          <input type="reset" id="limpar" name="limpar" value="Limpar" onclick="$('#textarea').cleditor()[0].clear()">
+        </li>
+    </ul>
+    </form>
+  </body>
+</html>

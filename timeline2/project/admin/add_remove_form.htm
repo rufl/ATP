@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Test jQuery</title>
+
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.highlightFade.js"></script>
+
+<script type="text/javascript">
+function addFormField() {
+	var id = document.getElementById("id").value;
+	$("#divTxt").append("<p id='row" + id + "'><label for='txt" + id + "'>Field " + id + "&nbsp;&nbsp;<input type='text' size='20' name='txt[]' id='txt" + id + "'>&nbsp;&nbsp<a href='#' onClick='removeFormField(\"#row" + id + "\"); return false;'>Remove</a><p>");
+	
+	
+	$('#row' + id).highlightFade({
+		speed:1000
+	});
+	
+	id = (id - 1) + 2;
+	document.getElementById("id").value = id;
+}
+
+function removeFormField(id) {
+	$(id).remove();
+}
+</script>
+
+<body>
+
+<p><a href="#" onClick="addFormField(); return false;">Add</a></p>
+<form action="#" method="get" id="form1">
+<input type="hidden" id="id" value="1">
+<div id="divTxt"></div>
+<p><input type="submit" value="Submit" name="submit">
+<input type="reset" value="Reset" name="reset"></p>
+</form>
+
+</body>
+</html>
