@@ -157,5 +157,18 @@ timeline2
 			project\index.php
 		timeline2.ppr
 [Open project files]
+0=project\admin\textarea_cleditor.html
+1=New4.js
+2=..\..\..\Desktop\test.html
 [Selected Project Files]
 Main=
+Selected=New4.js
+[project\admin\textarea_cleditor.html]
+TopLine=1
+Caret=37,9
+[New4.js]
+TopLine=1
+Caret=8,9
+[..\..\..\Desktop\test.html]
+TopLine=2
+Caret=15,23

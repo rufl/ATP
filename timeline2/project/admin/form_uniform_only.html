@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- JQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>    
+    <!-- JQuery Tools-->
+    <script src="http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>
+    
+    <!-- Uniform Start -->
+    <script src="./js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      $(function(){
+        $("input, textarea, select, button").uniform();
+      });
+    </script>
+    <link rel="stylesheet" href="./css/uniform.default.css" type="text/css" media="screen">    
+    <style type="text/css" media="screen">
+      body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #666;
+        padding: 40px;
+      }
+      h1 {
+        margin-top: 0;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        margin-bottom: 20px;
+        clear: both;
+      }
+      label {
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 3px;
+        clear: both;
+      }
+    </style>
+    <!-- Uniform End -->        
+  </head>
+  <body>
+    <h1>Novo Evento</h1>
+    <form>
+      <ul>
+        <li>
+          <label>Tipo do conte&uacute;do:</label>
+          <select>
+            <option>Not&iacute;cia</option>
+            <option>Imagem</option>
+            <option>Milestone</option>
+          </select>
+        </li>
+        <li><label>T&iacute;tulo:</label><input type="text" size="40"/></li>
+        <li><label>Texto:</label></li> 
+        <li><textarea id="input" name="input">Digite a descri&ccedil;&atilde;o do evento aqui.</textarea></li>
+        <li><label>Data do Evento:</label><input type="date" name="date"/></li>
+        <label>Enviar Imagem:</label>        
+        <li>
+          <input type="file" />
+        </li>
+        <li>
+          <input type="submit" />
+          <input type="reset" />
+        </li>
+    </ul>
+    </form>
+  </body>
+</html>

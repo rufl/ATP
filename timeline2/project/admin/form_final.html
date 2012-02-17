@@ -2,37 +2,19 @@
 <html>
   <head>
     <!-- JQuery -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>    
     <!-- JQuery UI -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script> 
-    
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>    
     <!-- JQuery Tools-->
-    <script src="http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js">script>
-        
+    <script src="http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>    
     <!-- Uniform Start -->
-    <script src="./js/jquery.uniform.js"></script>
-    <script>
+    <script src="./js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
       $(function(){
         $("input, textarea, select, button").uniform();
       });
     </script>
     <link rel="stylesheet" href="./css/uniform.default.css" type="text/css" media="screen">
-    <!-- Uniform End -->
-    
-    <!-- HTMLArea Editor Start -->
-    <script src="./js/jHtmlArea-0.7.0.min.js"></script>
-    <link rel="Stylesheet" type="text/css" href="./css/jHtmlArea.css" />
-        
-    <script src="./js/jHtmlArea.ColorPickerMenu-0.7.0.min.js"></script>
-    <link rel="Stylesheet" type="text/css" href="./css/jHtmlArea.ColorPickerMenu.css" />    
-    <!-- HTMLArea Editor End -->
-    
-    <!-- Date Picker Start -->
-    <link rel="stylesheet" type="text/css" href="./css/call.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/date.css"/>
-    <!-- Date Picker End -->
-    
     <style type="text/css" media="screen">
       body {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -60,11 +42,58 @@
         clear: both;
       }
     </style>
-
+    <!-- Uniform End -->
+    <!-- Date Picker Start -->
+    <link rel="stylesheet" type="text/css" href="./css/call.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/date.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/jqueryui/jquery-ui-1.7.2.custom.css"/>
+    <!-- Date Picker End -->      
+    <!-- CLEditor Start -->
+    <link rel="stylesheet" type="text/css" href="./css/jquery.cleditor.css" />
+    <script type="text/javascript" src="./js/jquery.cleditor.min.js"></script>
+    
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#input").cleditor({
+          width:        585, // width not including margins, borders or padding
+          height:       250, // height not including margins, borders or padding
+          controls:     // controls to add to the toolbar
+                        "bold italic underline subscript superscript | font size " +
+                        "| color highlight removeformat | bullets numbering | outdent " +
+                        "indent | alignleft center alignright justify | undo redo | " +
+                        "link unlink | paste pastetext",
+          colors:       // colors in the color popup
+                        "FFF FCC FC9 FF9 FFC 9F9 9FF CFF CCF FCF " +
+                        "CCC F66 F96 FF6 FF3 6F9 3FF 6FF 99F F9F " +
+                        "BBB F00 F90 FC6 FF0 3F3 6CC 3CF 66C C6C " +
+                        "999 C00 F60 FC3 FC0 3C0 0CC 36F 63F C3C " +
+                        "666 900 C60 C93 990 090 399 33F 60C 939 " +
+                        "333 600 930 963 660 060 366 009 339 636 " +
+                        "000 300 630 633 330 030 033 006 309 303",    
+          fonts:        // font names in the font popup
+                        "Arial,Arial Black,Comic Sans MS,Courier New,Narrow,Garamond," +
+                        "Georgia,Impact,Sans Serif,Serif,Tahoma,Trebuchet MS,Verdana",
+          sizes:        // sizes in the font size popup
+                        "1,2,3,4,5,6,7",
+          styles:       // styles in the style popup
+                        [["Paragraph", "<p>"], ["Header 1", "<h1>"], ["Header 2", "<h2>"],
+                        ["Header 3", "<h3>"],  ["Header 4","<h4>"],  ["Header 5","<h5>"],
+                        ["Header 6","<h6>"]],
+          useCSS:       false, // use CSS to style HTML when possible (not supported in ie)
+          docType:      // Document type contained within the editor
+                        '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">',
+          docCSSFile:   // CSS file used to style the document contained within the editor
+                        "", 
+          bodyStyle:    // style to assign to document body contained within the editor
+                        "margin:4px; font:10pt Arial,Verdana; cursor:text"
+        });
+      });
+    </script>
+    <!-- CLEditor End -->
   </head>
   <body>
     <h1>Novo Evento</h1>
-    <form>
+    <form id="novo_evento">
       <ul>
         <li>
           <label>Tipo do conte&uacute;do:</label>
@@ -75,28 +104,15 @@
           </select>
         </li>
         <li><label>T&iacute;tulo:</label><input type="text" size="40"/></li>
-        <li><label>Texto:</label>
-    
-    <script>
-        //// You can also override the "default" colors option of the jHtmlAreaColorPickerMenu
-        //// to show only the specific colors you want.
-        // jHtmlAreaColorPickerMenu.defaultOptions.colors = ["red", "yellow", "blue", "green", "purple", "white", "black"];
-
-        // The followin creates a jHtmlArea and adds a custom list of toolbar buttons.
-        // Among the buttons is the "forecolor" button that will automatically take
-        // advantage of the jHtmlAreaColorPickerMenu plugin.
-        $(function() {
-            $("#Textarea1").htmlarea({
-                toolbar: ["html", "|",
-                        "forecolor",  // <-- Add the "forecolor" Toolbar Button
-                        "|", "bold", "italic", "underline", "|", "p", "h1", "h2", "h3", "|", "link", "unlink"] // Overrides/Specifies the Toolbar buttons to show
-                });
-        });
-    </script>   
-        
-        <textarea id="Textarea1" cols="40" rows="5"></textarea></li>
+        <li><label>Texto:</label></li> 
+        <li><textarea id="input" name="input"></textarea></li>
 
         <li><label>Data do Evento:</label><input type="date" name="date"/></li>
+
+<script>
+var limpaForm=function() { $("#input").cleditor.clear(); };
+</script>
+    
     <!-- Date Picker Locale e Call Start -->
 <script>
 // pt-br localization
@@ -110,11 +126,13 @@
 // dateinput initialization. the language is specified with lang- option
     $(":date").dateinput({ 
 	    lang: 'pt-br', 
-	    format: 'dddd dd, mmmm yyyy',
-	    offset: [30, 0]
+	    format: 'dddd,dd' + de + 'mmmm' + de + 'yyyy',
+	    offset: [50, 50]
+        speed: 'slow', 
     });
 </script>
 <script>$(":date").dateinput();</script>
+
     <!-- Date Picker Locale e Call End -->
 
         <label>Enviar Imagem:</label>        
@@ -122,8 +140,10 @@
           <input type="file" />
         </li>
         <li>
-          <input type="submit" />
-          <input type="reset" />
+          <input type="submit" /><br>
+          <input type="reset" onclick="limpaForm();" /><br>
+          <input type="button" id="limpar" name="limpar" value="Limpar" onclick="$("#input").cleditor().clear()">
+
         </li>
     </ul>
     </form>

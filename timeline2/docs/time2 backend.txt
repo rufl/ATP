@@ -6,12 +6,18 @@ Frontend
     - http://flowplayer.org/tools/index.html
     - http://manos.malihu.gr/tuts/jquery_custom_scrollbar.html
 
+--- Todo
+* Limitar Chars na Textarea.
+* JS - Limpar Textarea via Reset.
+* 
+
+
 
 Backend
   > Form -
   - ID[id] - (hidden) - Incremental 
   - Dropdown [type] - Tipo - (notícia|imagem|milestone).
-  - Campo - [title] - Título - (255 chars).
+  - Campo - [title] - Título - (max 255 chars).
   - Campo - [body] - Texto/Imagem - (textarea[html editor]+[image upload]).
   - Campo - Data [date_event] - [date picker] - ().
   - Botão - [Publicar]
@@ -27,9 +33,7 @@ Backend - Componentes -
   > Date Input (JQuery Tools Date Input)
     - http://flowplayer.org/tools/dateinput/index.html <DONE>
 
-  > HTML Editor (JHtmlArea)  
-    - http://jhtmlarea.codeplex.com/releases/view/30759
-    - http://markitup.jaysalvat.com/home/
+  > HTML Editor (CLEditor)  
     - http://premiumsoftware.net/cleditor/
 
   > Image Upload (Uber Upload Cropper)

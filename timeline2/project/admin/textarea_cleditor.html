@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./css/jquery.cleditor.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.cleditor.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#input").cleditor()[0].focus();
+      });
+    </script>
+  </head>
+
+  <body>
+   <form> 
+    <textarea id="input" name="input">Teste.</textarea>
+    <input type="button" id="limpar" name="limpar" value="Limpar" onclick="$('#input').cleditor()[0].clear()"><br>
+   </form>
+  </body>
+</html>
