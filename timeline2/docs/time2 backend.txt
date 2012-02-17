@@ -86,14 +86,19 @@ Backend - Fase 2 - Instalação CakePHP + Componentes
   > Richtext Editor - TinyMCE
     http://cakedc.com/eng/downloads/view/tinymce <DONE>
      *** Configure - Toolbars / Formatting Buttons - [B], [S], [color], [remove] <DONE>
-     *** FIX - Slow Loading. (Virtualbox)
-     *** Configure Plugins   
-     *** Skin - Cirkuit
-     http://www.cirkuit.net/projects/tinymce/cirkuitSkin/
+     *** FIX - Slow Loading. (Virtualbox) <DONE>
      *** Skin - TheBigReason
-     http://thebigreason.com/blog/2008/09/29/thebigreason-tinymce-skin
+     http://thebigreason.com/blog/2008/09/29/thebigreason-tinymce-skin <CANCELED>
+     *** Skin - Cirkuit
+     http://www.cirkuit.net/projects/tinymce/cirkuitSkin/ <DONE>     
+     *** Configure Plugins - fullscreen,autolink,inlinepopups,preview,advlist <DONE>
+     *** Fix CSS border/Decoration - TinyMCE - Border Radius <DONE>
+          
 
-  > Image Upload + Crop -   
+  > Slider - Upload de imagem (Bootstrap)
+    Ativa desativa campo de upload. [Desativado por Padrão]
+  
+  > Image Upload + Crop - 
 
   > UI - CSS / Bootstrap Dialogs
     *** Flash Messages
@@ -123,3 +128,9 @@ Extras
 
   HTML Escape Chars
   http://www.theukwebdesigncompany.com/articles/entity-escape-characters.php
+
+  TinyMCE Plugin Reference
+  http://www.tinymce.com/wiki.php/Configuration:plugins
+
+  Crunch - LESS Editor
+  http://crunchapp.net/

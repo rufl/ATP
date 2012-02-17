@@ -12,8 +12,14 @@
 	vertical-align: baseline;
 	width: auto;
 	border-collapse: separate;
-	text-align: left
+	text-align: left;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 }
+
+ 
 
 .cirkuitSkin a:hover, .cirkuitSkin a:link, .cirkuitSkin a:visited, .cirkuitSkin a:active {
 	text-decoration: none;
