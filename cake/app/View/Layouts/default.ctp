@@ -8,16 +8,14 @@
 echo $this->fetch('meta');
 echo $this->fetch('css');
 echo $this->fetch('script');
-
 echo $this->Html->script('libs/jquery.js');
 echo $this->Html->script('libs/jquery-ui-1.8.17.custom.min.js');
 echo $this->Html->script('datepicker_widget.js');
 echo $this->Html->script('general.js');
-echo $this->Html->script('ckeditor/ckeditor.js');
 echo $this->Html->script('cakebootstrap.js');
 echo $this->Html->css('libs/bootstrap.min');
 echo $this->Html->css('theme/smoothness/jquery-ui-1.8.17.custom');
-
+echo $this->Html->script('/TinyMCE/js/tiny_mce/tiny_mce.js', array('inline' => false));
 ?>
 </head>
 <body>

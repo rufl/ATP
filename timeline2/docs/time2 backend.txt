@@ -36,7 +36,7 @@ Backend
   - Botão - [Publicar]
 
   
-Backend - Fase 1 - Componentes JQuery + Template -
+Backend - Fase 1 - Teste/Levantamento de Componentes JQuery + Template -
 
   > Conectividade DB - <DONE via CakePHP - CRUD>
 
@@ -59,7 +59,7 @@ Backend - Fase 1 - Componentes JQuery + Template -
     http://www.fmajakovskij.info/simple-php-authentication-class/ <CANCELED>
 
 
-Backend - Fase 2 - CakePHP + Componentes
+Backend - Fase 2 - Instalação CakePHP + Componentes
 
   > UI/Form Frameworks - 
 
@@ -75,21 +75,29 @@ Backend - Fase 2 - CakePHP + Componentes
 ----------------------------------------------------------------
   
   > Date Picker - JQuery UI - <DONE>
-    http://jqueryui.com/
+    - http://jqueryui.com/
 
   > Hide / Show - Campo Imagem <DONE>
-http://jsfiddle.net/gnarf/GpmSs/2/
+    - http://jsfiddle.net/gnarf/GpmSs/2/
 
   > Enum Fields to Select Boxes -   
     http://bakery.cakephp.org/articles/christian.kilb/2010/09/09/form-helper-enum-fields-to-select-boxes <DONE>
 
-  > Richtext Editor - 
+  > Richtext Editor - TinyMCE
+    http://cakedc.com/eng/downloads/view/tinymce <DONE>
+     *** FIX - Slow Loading.
+     *** Configure - Formatting Buttons - [B], [S], [color], [remove]
+
       
   > Image Upload - 
 
+  > UI - CSS / Bootstrap Dialogs
+    *** Flash Messages
+    *** Menus
+
+----------------------------------------------------------------
   > Validation - 
-
-
+  > Autentication (ACL)- 
 
 
 Extras

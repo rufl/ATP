@@ -2,8 +2,8 @@
 class PostsController extends AppController {
     public $name = 'Posts';
     #public $helpers = array('Html', 'Form');
-    public $helpers = array('Html', 'Form', 'Form2');
-
+    public $helpers = array('Html', 'Form', 'Form2','TinyMCE.TinyMCE');
+    
     public function index() {
          $this->set('posts', $this->Post->find('all'));
     }
