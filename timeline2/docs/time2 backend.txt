@@ -7,12 +7,17 @@ Frontend
     - http://manos.malihu.gr/tuts/jquery_custom_scrollbar.html
 
 --- Todo
-* Telas Create / Read / Update / Delete
+* Layout Backend (CakePHP)
+* Layout Frontend (Demo)
+* Image Upload
 * Limitar Coluna da Textarea
+* Validação
+* Autenticação
 
 --- WIP
 
 --- Done
+* Telas Create / Read / Update / Delete (CakePHP?) <DONE>
 * JS - Limpar Textarea via Reset. <DONE>
 * Setas Picker <DONE>
 * Hide / Show - Campo Imagem <DONE>
@@ -25,7 +30,9 @@ Backend
   - Dropdown [type] - Tipo - (notícia|imagem|milestone).
   - Campo - [title] - Título - (max 255 chars).
   - Campo - [body] - Texto/Imagem - (textarea[html editor]+[image upload]).
-  - Campo - Data [date_event] - [date picker] - ().
+  - Campo - [date_event] - Data - [date picker] - ().
+  - Campo - [created] - Criado.
+  - Campo - [modified] - Modificado.
   - Botão - [Publicar]
 
   

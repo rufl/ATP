@@ -1,0 +1,140 @@
+------
+Reqs -
+------ 
+> Apache. mod_rewrite is preferred, but by no means required.
+> PHP 5.2.8 or greater.
+> MySQL (4 or greater)
+> The built-in drivers all require PDO. You should make sure you 
+have the correct PDO extensions installed.
+> Make sure you are loading up mod_rewrite correctly. 
+You should see (httpd.conf) something like:
+LoadModule rewrite_module libexec/apache2/mod_rewrite.so
+
+-------
+Perms - 
+-------
+app/tmp - apache user
+
+Make /tmp writable - 
+chown -R www-data app/tmp
+
+------------------------------------------
+> Apache and MOD_REWRITE (and .htaccess) -
+------------------------------------------ 
+
+1 - 
+Make sure that an .htaccess override is allowed and that AllowOverride 
+is set to All for the correct DocumentRoot. 
+You should see something similar to:
+
+(httpd.conf) ------------------------------------------------------
+
+# Each directory to which Apache has access can be configured with respect
+# to which services and features are allowed and/or disabled in that
+# directory (and its subdirectories).
+#
+# First, we configure the "default" to be a very restrictive set of
+# features.
+#
+<Directory />
+    Options FollowSymLinks
+    AllowOverride All
+#    Order deny,allow
+#    Deny from all
+</Directory>
+(httpd.conf) ------------------------------------------------------
+
+
+2 - 
+(/.htaccess) ------------------------------------------------------
+#Cake root directory (needs to be copied to your document, this redirects everything 
+#to your Cake app):
+<IfModule mod_rewrite.c>
+   RewriteEngine on
+   RewriteRule    ^$ app/webroot/    [L]
+   RewriteRule    (.*) app/webroot/$1 [L]
+</IfModule>
+(/.htaccess) ------------------------------------------------------
+
+(/app/.htaccess) ------------------------------------------------------
+#Cake app directory (will be copied to the top directory of your application by bake):
+<IfModule mod_rewrite.c>
+   RewriteEngine on
+   RewriteRule    ^$    webroot/    [L]
+   RewriteRule    (.*) webroot/$1    [L]
+</IfModule>
+(/app/.htaccess) ------------------------------------------------------
+
+
+#Cake webroot directory (will be copied to your application’s web root by bake):
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php/$1 [QSA,L]
+</IfModule>
+(./httpd.conf) ------------------------------------------------------
+
+
+3 - 
+If your cakephp site still has problems with mod_rewrite you might want to try and 
+modify settings for virtualhosts. 
+Ensure that AllowOverride None is changed to AllowOverride All, so you have:
+
+(httpd.conf) ------------------------------------------------------
+<Directory />
+    Options FollowSymLinks
+    AllowOverride All
+</Directory>
+<Directory /var/www>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Order Allow,Deny
+    Allow from all
+</Directory>
+(httpd.conf) ------------------------------------------------------
+
+Structure - 
+DocumentRoot/<pack>
+
+-----------------
+Timezone Errors -
+----------------- 
+Uncomment -
+-------------------------------------------------------------------- 
+<cake>/app/Config/core.php
+
+date_default_timezone_set('UTC')
+--------------------------------------------------------------------
+
+----------------
+Project Example:
+----------------
+Model - 
+/app/Models/Post.php
+
+View - 
+Cake’s view files are stored in /app/View inside a folder named after the controller they correspond to.
+> e.g: /app/View/Posts
+
+Controller(Actions) - 
+You need to include the SessionComponent - and SessionHelper - in any controller where you will use it. 
+If necessary, include it in your AppController.
+> e.g: /app/Controller/PostsController.php
+
+Routes - 
+/app/Config/routes.php
+
+  > Custom Route:
+  (/app/Config/routes.php) ------------------------------------------------------
+  Router::connect('/', array('controller' => 'posts', 'action' => 'index'));
+  (/app/Config/routes.php) ------------------------------------------------------
+
+DB - 
+> [posts] (id|title|body|created|modified)
+
+Layouts(Templates) - 
+A layout contains presentation code that wraps around a view.
+Layout files should be placed in 
+> e.g: /app/View/Layouts/default.ctp
