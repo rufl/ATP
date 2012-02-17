@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- JQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    
+    <!-- JQuery UI -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script> 
+    
+    <!-- JQuery Tools-->
+    <script src="http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js">script>
+        
+    <!-- Uniform Start -->
+    <script src="./js/jquery.uniform.js"></script>
+    <script>
+      $(function(){
+        $("input, textarea, select, button").uniform();
+      });
+    </script>
+    <link rel="stylesheet" href="./css/uniform.default.css" type="text/css" media="screen">
+    <!-- Uniform End -->
+    
+    <!-- HTMLArea Editor Start -->
+    <script src="./js/jHtmlArea-0.7.0.min.js"></script>
+    <link rel="Stylesheet" type="text/css" href="./css/jHtmlArea.css" />
+        
+    <script src="./js/jHtmlArea.ColorPickerMenu-0.7.0.min.js"></script>
+    <link rel="Stylesheet" type="text/css" href="./css/jHtmlArea.ColorPickerMenu.css" />    
+    <!-- HTMLArea Editor End -->
+    
+    <!-- Date Picker Start -->
+    <link rel="stylesheet" type="text/css" href="./css/call.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/date.css"/>
+    <!-- Date Picker End -->
+    
+    <style type="text/css" media="screen">
+      body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #666;
+        padding: 40px;
+      }
+      h1 {
+        margin-top: 0;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        margin-bottom: 20px;
+        clear: both;
+      }
+      label {
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 3px;
+        clear: both;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h1>Novo Evento</h1>
+    <form>
+      <ul>
+        <li>
+          <label>Tipo do conte&uacute;do:</label>
+          <select>
+            <option>Not&iacute;cia</option>
+            <option>Imagem</option>
+            <option>Milestone</option>
+          </select>
+        </li>
+        <li><label>T&iacute;tulo:</label><input type="text" size="40"/></li>
+        <li><label>Texto:</label>
+    
+    <script>
+        //// You can also override the "default" colors option of the jHtmlAreaColorPickerMenu
+        //// to show only the specific colors you want.
+        // jHtmlAreaColorPickerMenu.defaultOptions.colors = ["red", "yellow", "blue", "green", "purple", "white", "black"];
+
+        // The followin creates a jHtmlArea and adds a custom list of toolbar buttons.
+        // Among the buttons is the "forecolor" button that will automatically take
+        // advantage of the jHtmlAreaColorPickerMenu plugin.
+        $(function() {
+            $("#Textarea1").htmlarea({
+                toolbar: ["html", "|",
+                        "forecolor",  // <-- Add the "forecolor" Toolbar Button
+                        "|", "bold", "italic", "underline", "|", "p", "h1", "h2", "h3", "|", "link", "unlink"] // Overrides/Specifies the Toolbar buttons to show
+                });
+        });
+    </script>   
+        
+        <textarea id="Textarea1" cols="40" rows="5"></textarea></li>
+
+        <li><label>Data do Evento:</label><input type="date" name="date"/></li>
+    <!-- Date Picker Locale e Call Start -->
+<script>
+// pt-br localization
+   $.tools.dateinput.localize("pt-br",  {
+     months:        'janeiro,fevereiro,mar&ccedil;o,abril,maio,junho,julho,agosto,' +
+                   	'setembro,outubro,novembro,dezembro',
+     shortMonths:   'jan,fev,mar,abr,mai,jun,jul,ago,set,out,nov,dez',
+     days:          'segunda,ter&ccedil;a&#45;feira,quarta&#45;feira,quinta&#45;feira,sexta&#45;feira,s&aacute;bado,domingo',      
+     shortDays:     'seg,ter,qua,qui,sex,sab,dom'
+    });
+// dateinput initialization. the language is specified with lang- option
+    $(":date").dateinput({ 
+	    lang: 'pt-br', 
+	    format: 'dddd dd, mmmm yyyy',
+	    offset: [30, 0]
+    });
+</script>
+<script>$(":date").dateinput();</script>
+    <!-- Date Picker Locale e Call End -->
+
+        <label>Enviar Imagem:</label>        
+        <li>
+          <input type="file" />
+        </li>
+        <li>
+          <input type="submit" />
+          <input type="reset" />
+        </li>
+    </ul>
+    </form>
+  </body>
+</html>

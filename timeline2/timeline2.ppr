@@ -1,0 +1,161 @@
+[Config]
+Compilator.SaveAll=0
+Compilator.Capture=0
+Compilator.HideOutput=0
+Compilator.LogType=0
+DefaultDir=C:\Users\A42777\Documents\_projetos\timeline2
+DefaultCPIndex=0
+LogtoEnd=1
+DontOpen=0
+AbsolutePath=0
+FileFormat=0
+ProjectFilesOnly=0
+Extensions=*.*
+[Project tree]
+timeline2
+	+timeline2
+		+assets
+			+backend
+				-auth1.0
+					assets\backend\auth1.0\Auth.class.php
+					assets\backend\auth1.0\testauth.php
+					assets\backend\auth1.0\testlogin.html
+				-formly
+					assets\backend\formly\formly.min.css
+					assets\backend\formly\formly.min.js
+				+jhtmlarea
+					-images
+						assets\backend\jhtmlarea\images\disk.png
+					-scripts
+						assets\backend\jhtmlarea\scripts\jHtmlArea.ColorPickerMenu-0.7.0.js
+						assets\backend\jhtmlarea\scripts\jHtmlArea.ColorPickerMenu-0.7.0.min.js
+						assets\backend\jhtmlarea\scripts\jHtmlArea-0.7.0.js
+						assets\backend\jhtmlarea\scripts\jHtmlArea-0.7.0.min.js
+						assets\backend\jhtmlarea\scripts\jHtmlArea-0.7.0.min-vsdoc.js
+						assets\backend\jhtmlarea\scripts\jHtmlArea-0.7.0-vsdoc.js
+						assets\backend\jhtmlarea\scripts\jquery-1.3.2.js
+						assets\backend\jhtmlarea\scripts\jquery-1.3.2.min.js
+						assets\backend\jhtmlarea\scripts\jquery-1.3.2.min-vsdoc.js
+						assets\backend\jhtmlarea\scripts\jquery-1.3.2-vsdoc.js
+						assets\backend\jhtmlarea\scripts\jquery-ui-1.7.2.custom.min.js
+					-style
+						-jqueryui
+							-ui-lightness
+								-images
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-bg_diagonals-thick_18_b81900_40x40.png
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-bg_diagonals-thick_20_666666_40x40.png
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-bg_flat_10_000000_40x100.png
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-bg_glass_100_f6f6f6_1x400.png
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-bg_glass_100_fdf5ce_1x400.png
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-bg_glass_65_ffffff_1x400.png
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-bg_gloss-wave_35_f6a828_500x100.png
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-bg_highlight-soft_100_eeeeee_1x100.png
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-bg_highlight-soft_75_ffe45c_1x100.png
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-icons_222222_256x240.png
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-icons_228ef1_256x240.png
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-icons_ef8c08_256x240.png
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-icons_ffd27a_256x240.png
+									assets\backend\jhtmlarea\style\jqueryui\ui-lightness\images\ui-icons_ffffff_256x240.png
+								assets\backend\jhtmlarea\style\jqueryui\ui-lightness\jquery-ui-1.7.2.custom.css
+						assets\backend\jhtmlarea\style\jHtmlArea.ColorPickerMenu.css
+						assets\backend\jhtmlarea\style\jHtmlArea.css
+						assets\backend\jhtmlarea\style\jHtmlArea.Editor.css
+						assets\backend\jhtmlarea\style\jHtmlArea.png
+						assets\backend\jhtmlarea\style\jHtmlArea_Toolbar_Group__Btn_Select_BG.png
+						assets\backend\jhtmlarea\style\jHtmlArea_Toolbar_Group_BG.png
+					assets\backend\jhtmlarea\AutoPostTest.aspx
+					assets\backend\jhtmlarea\AutoPostTest.aspx.vb
+					assets\backend\jhtmlarea\ColorPickerMenu.htm
+					assets\backend\jhtmlarea\Default.htm
+					assets\backend\jhtmlarea\Readme.txt
+				-uberuploadcropper
+					-css
+						assets\backend\uberuploadcropper\css\default.css
+						assets\backend\uberuploadcropper\css\uploadify.css
+					-scripts
+						-Jcrop
+							-css
+								assets\backend\uberuploadcropper\scripts\Jcrop\css\Jcrop.gif
+								assets\backend\uberuploadcropper\scripts\Jcrop\css\jquery.Jcrop.css
+							-demos
+								-demo_files
+									assets\backend\uberuploadcropper\scripts\Jcrop\demos\demo_files\demos.css
+									assets\backend\uberuploadcropper\scripts\Jcrop\demos\demo_files\flowers.jpg
+									assets\backend\uberuploadcropper\scripts\Jcrop\demos\demo_files\sago.jpg
+									assets\backend\uberuploadcropper\scripts\Jcrop\demos\demo_files\sagomod.jpg
+									assets\backend\uberuploadcropper\scripts\Jcrop\demos\demo_files\sagomod.png
+								assets\backend\uberuploadcropper\scripts\Jcrop\demos\crop.php
+								assets\backend\uberuploadcropper\scripts\Jcrop\demos\tutorial1.html
+								assets\backend\uberuploadcropper\scripts\Jcrop\demos\tutorial2.html
+								assets\backend\uberuploadcropper\scripts\Jcrop\demos\tutorial3.html
+								assets\backend\uberuploadcropper\scripts\Jcrop\demos\tutorial4.html
+								assets\backend\uberuploadcropper\scripts\Jcrop\demos\tutorial5.html
+							-js
+								assets\backend\uberuploadcropper\scripts\Jcrop\js\jquery.Jcrop.js
+								assets\backend\uberuploadcropper\scripts\Jcrop\js\jquery.Jcrop.min.js
+								assets\backend\uberuploadcropper\scripts\Jcrop\js\jquery.min.js
+							assets\backend\uberuploadcropper\scripts\Jcrop\index.html
+						assets\backend\uberuploadcropper\scripts\expressInstall.swf
+						assets\backend\uberuploadcropper\scripts\jquery.uploadify.v2.1.0.min.js
+						assets\backend\uberuploadcropper\scripts\jquery-1.4.2.min.js
+						assets\backend\uberuploadcropper\scripts\jquery-impromptu.3.1.min.js
+						assets\backend\uberuploadcropper\scripts\jquery-uberuploadcropper.js
+						assets\backend\uberuploadcropper\scripts\swfobject.js
+						assets\backend\uberuploadcropper\scripts\uploadify.swf
+					assets\backend\uberuploadcropper\cancel.png
+					assets\backend\uberuploadcropper\crop.php
+					assets\backend\uberuploadcropper\index.php
+					assets\backend\uberuploadcropper\photo_not_available.png
+					assets\backend\uberuploadcropper\README.txt
+					assets\backend\uberuploadcropper\uploadify.php
+				-uniform
+					-css
+						assets\backend\uniform\css\uniform.default.css
+					-demo
+						assets\backend\uniform\demo\demo.html
+					assets\backend\uniform\jquery.uniform.js
+					assets\backend\uniform\jquery.uniform.min.js
+					assets\backend\uniform\README.textile
+			-zip
+				assets\zip\auth1.0.zip
+				assets\zip\demo_timeline.zip
+				assets\zip\Formly.min.zip
+				assets\zip\jHtmlArea-0.7.0.ExamplePlusSource.zip
+				assets\zip\uberuploadcropper.zip
+				assets\zip\uniform_24.rar
+		+docs
+			docs\time2 backend.txt
+		+project
+			+admin
+				+css
+					project\admin\css\uniform.default.css
+				+img
+					project\admin\img\bg-input.png
+					project\admin\img\bg-input-focus.png
+					project\admin\img\sprite.png
+				+js
+					project\admin\js\jquery.uniform.js
+					project\admin\js\jquery.uniform.min.js
+					project\admin\js\uniform.default.css
+				project\admin\teste_data.html
+				project\admin\insert.php
+			+css
+				project\css\styles.css
+			+img
+				+icons
+					project\img\icons\camera.png
+					project\img\icons\chart.png
+					project\img\icons\newspaper.png
+				project\img\google_garage.jpg
+				project\img\machu-picchu.jpg
+				project\img\slider.png
+				project\img\slider_center.png
+			+js
+				project\js\script.js
+			project\connect.php
+			project\datas.php
+			project\index.php
+		timeline2.ppr
+[Open project files]
+[Selected Project Files]
+Main=

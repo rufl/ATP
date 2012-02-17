@@ -1,0 +1,63 @@
+﻿-----------
+Realizações
+-----------
+Frontend
+  > Exibição Conteúdo (JQuery Tools Overlay + Jquery Custom Scroller)
+    - http://flowplayer.org/tools/index.html
+    - http://manos.malihu.gr/tuts/jquery_custom_scrollbar.html
+
+
+Backend
+  > Form -
+  - ID[id] - (hidden) - Incremental 
+  - Dropdown [type] - Tipo - (notícia|imagem|milestone).
+  - Campo - [title] - Título - (255 chars).
+  - Campo - [body] - Texto/Imagem - (textarea[html editor]+[image upload]).
+  - Campo - Data [date_event] - [date picker] - ().
+  - Botão - [Publicar]
+
+  
+Backend - Componentes -
+
+  > Conectividade DB - <DONE>
+
+  > Form Framework (Uniform)
+    - http://uniformjs.com/ <DONE>
+
+  > Date Input (JQuery Tools Date Input)
+    - http://flowplayer.org/tools/dateinput/index.html <DONE>
+
+  > HTML Editor (JHtmlArea)  
+    - http://jhtmlarea.codeplex.com/releases/view/30759
+    - http://markitup.jaysalvat.com/home/
+    - http://premiumsoftware.net/cleditor/
+
+  > Image Upload (Uber Upload Cropper)
+    - http://trentrichardson.com/2010/04/12/uberuploadcropper-0-2-with-example/
+
+  > Validação - (JQuery Tools Validator)
+    - http://flowplayer.org/tools/validator/index.html
+
+  > Autenticação básica
+    http://www.fmajakovskij.info/simple-php-authentication-class/
+
+
+Extras
+  
+  Themes
+  http://jqueryui.com/themeroller
+
+  Framework PHP - CakePHP
+  http://www.sitepoint.com/application-development-cakephp/
+  
+  Demos 9Lessons
+  http://demos.9lessons.info/
+  
+  JSFiddle
+  http://jsfiddle.net/
+
+  Formly
+  http://thrivingkings.com/formly/
+
+  HTML Escape Chars
+  http://www.theukwebdesigncompany.com/articles/entity-escape-characters.php
