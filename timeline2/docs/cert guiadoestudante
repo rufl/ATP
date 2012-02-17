@@ -1,0 +1,96 @@
+---------------------------------------------
+Guia do estudante - Instalação de Certificado
+---------------------------------------------
+
+<Interfaces>
+ Ext 189.91.165.79
+ Int 172.16.208.29
+
+<BigIP>
+ httpclass_return_apache1_2 > pool_apache_1_2 > apache_1 (saopaulo) / apache_2
+
+<VirtualHost>
+ /app/apache/vhosts/guiadoestudante.conf.saopaulo
+ /app/apache/vhosts/guiadoestudante.conf.curitiba
+ 
+<httpd.conf>
+ Include /app/apache/vhosts/guiadoestudante.conf.saopaulo
+ Include /etc/httpd/conf.d/ssl.conf
+
+<ssl conf>
+LoadModule ssl_module modules/mod_ssl.so 	OK
+
+
+ 
+<Processo>
+ 1- /etc/httpd/certificados 			OK
+ 
+ 2 - </etc/httpd/conf.d/ssl.conf>:		OK
+	Saopaulo:
+	Listen 172.16.10.98:443			
+ 	Listen 172.16.10.99:443
+ 	NameVirtualHost 172.16.10.98:443
+ 	NameVirtualHost 172.16.10.99:443
+
+	Curitiba:
+	Listen 172.16.10.100:443
+	Listen 172.16.10.101:443
+	NameVirtualHost 172.16.10.100:443
+	NameVirtualHost 172.16.10.101:443
+
+ 3 - Criar VHost SSL em /app/apache/vhosts:	OK
+ </app/apache/vhosts/guiadoestudante_SSL.conf.saopaulo>
+-------------------------------------------------------------------------
+<VirtualHost 172.16.10.98:443>
+   ServerName guiadoestudante.abril.com.br
+   ServerAlias origin.guiadoestudante.abril.com.br
+   DocumentRoot /data/www/static/guiadoestudante
+
+   SSLEngine on
+   SSLCertificateFile /etc/httpd/certificados/star_abril_com_br.crt
+   SSLCertificateKeyFile /etc/httpd/certificados/star_abril_com_br.key
+   SSLCertificateChainFile /etc/httpd/certificados/DigiCertCA.crt
+
+   ErrorLog "| /usr/local/sbin/cronolog /data2/logs/apache/guiadoestudante/error_guiadoestudante_saopaulo_%Y%m%d"
+
+   <Directory /data/www/static/guiadoestudante>
+      DirectoryIndex index.html index.shtml index.htm index.shl
+      Options +Includes
+      AddType text/html .shtml
+      AddHandler server-parsed .shtml
+      AddType text/html .shl
+      AddHandler server-parsed .shl
+   </Directory>
+
+</VirtualHost>
+-------------------------------------------------------------------------
+
+</app/apache/vhosts/guiadoestudante_SSL.conf.curitiba>
+-------------------------------------------------------------------------
+<VirtualHost 172.16.10.101:443>
+   ServerName guiadoestudante.abril.com.br
+   ServerAlias origin.guiadoestudante.abril.com.br
+   DocumentRoot /data/www/static/guiadoestudante
+
+   ErrorLog "| /usr/local/sbin/cronolog /data2/logs/apache/guiadoestudante/error_guiadoestudante_curitiba_%Y%m%d"
+
+   SSLEngine on
+   SSLCertificateFile /etc/httpd/certificados/star_abril_com_br.crt
+   SSLCertificateKeyFile /etc/httpd/certificados/star_abril_com_br.key
+   SSLCertificateChainFile /etc/httpd/certificados/DigiCertCA.crt
+
+   <Directory /data/www/static/guiadoestudante>
+      DirectoryIndex index.html index.shtml index.htm index.shl
+      Options +Includes
+      AddType text/html .shtml
+      AddHandler server-parsed .shtml
+      AddType text/html .shl
+      AddHandler server-parsed .shl
+   </Directory>
+
+</VirtualHost>
+-------------------------------------------------------------------------
+
+
+
+ 

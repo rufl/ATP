@@ -1,7 +1,8 @@
 <?php
 class PostsController extends AppController {
     public $name = 'Posts';
-    public $helpers = array('Html', 'Form');
+    #public $helpers = array('Html', 'Form');
+    public $helpers = array('Html', 'Form', 'Form2');
 
     public function index() {
          $this->set('posts', $this->Post->find('all'));

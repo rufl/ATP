@@ -7,16 +7,16 @@ Frontend
     - http://manos.malihu.gr/tuts/jquery_custom_scrollbar.html
 
 --- Todo
-* Layout Backend (CakePHP)
 * Layout Frontend (Demo)
 * Image Upload
-* Limitar Coluna da Textarea
 * Validação
 * Autenticação
 
 --- WIP
+* Layout Backend (CakePHP)
 
 --- Done
+* Criação Tabelas DB <DONE>
 * Telas Create / Read / Update / Delete (CakePHP?) <DONE>
 * JS - Limpar Textarea via Reset. <DONE>
 * Setas Picker <DONE>
@@ -36,27 +36,60 @@ Backend
   - Botão - [Publicar]
 
   
-Backend - Componentes -
+Backend - Fase 1 - Componentes JQuery + Template -
 
-  > Conectividade DB - <DONE>
+  > Conectividade DB - <DONE via CakePHP - CRUD>
 
-  > Form Framework (Uniform)
-    - http://uniformjs.com/ <DONE>
+  > UI Framework (Bootstrap) 
+    - http://twitter.github.com/bootstrap/ <DONE> 
   
   > Date Input (JQuery Tools Date Input)
     - http://flowplayer.org/tools/dateinput/index.html <DONE>
   
-  > HTML Editor (CLEditor)  
+  > HTML Editor (CLEditor)
     - http://premiumsoftware.net/cleditor/ <DONE>
 
   > Image Upload (Uber Upload Cropper)
-    - http://trentrichardson.com/2010/04/12/uberuploadcropper-0-2-with-example/
+    - http://trentrichardson.com/2010/04/12/uberuploadcropper-0-2-with-example/ <CANCELED>
 
   > Validação - (JQuery Tools Validator)
-    - http://flowplayer.org/tools/validator/index.html
+    - http://flowplayer.org/tools/validator/index.html <CANCELED>
 
   > Autenticação básica
-    http://www.fmajakovskij.info/simple-php-authentication-class/
+    http://www.fmajakovskij.info/simple-php-authentication-class/ <CANCELED>
+
+
+Backend - Fase 2 - CakePHP + Componentes
+
+  > UI/Form Frameworks - 
+
+  > JQuery UI - 
+  http://jqueryui.com/ <DONE>
+
+  > Bootstrap
+    - http://twitter.github.com/bootstrap/ <DONE> 
+
+  > CakePHP Bootstrappifier
+    - https://github.com/mtkocak/Cakephp-Bootstrappifier <DONE>
+    
+----------------------------------------------------------------
+  
+  > Date Picker - JQuery UI - <DONE>
+    http://jqueryui.com/
+
+  > Hide / Show - Campo Imagem <DONE>
+http://jsfiddle.net/gnarf/GpmSs/2/
+
+  > Enum Fields to Select Boxes -   
+    http://bakery.cakephp.org/articles/christian.kilb/2010/09/09/form-helper-enum-fields-to-select-boxes <DONE>
+
+  > Richtext Editor - 
+      
+  > Image Upload - 
+
+  > Validation - 
+
+
 
 
 Extras
@@ -72,9 +105,6 @@ Extras
   
   JSFiddle
   http://jsfiddle.net/
-
-  Formly
-  http://thrivingkings.com/formly/
 
   HTML Escape Chars
   http://www.theukwebdesigncompany.com/articles/entity-escape-characters.php

@@ -34,6 +34,4 @@
 
 </table>
 
-
-
 <?php echo $this->Html->link('Adicionar Evento', array('controller' => 'posts', 'action' => 'add')); ?>

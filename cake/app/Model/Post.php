@@ -1,6 +1,6 @@
 <?php
-class Evento extends AppModel {
-    public $name = 'Evento';
+class Post extends AppModel {
+    public $name = 'Post';
 
     public $validate = array(
         'title' => array(
