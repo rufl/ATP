@@ -85,11 +85,15 @@ Backend - Fase 2 - Instalação CakePHP + Componentes
 
   > Richtext Editor - TinyMCE
     http://cakedc.com/eng/downloads/view/tinymce <DONE>
-     *** FIX - Slow Loading.
-     *** Configure - Formatting Buttons - [B], [S], [color], [remove]
+     *** Configure - Toolbars / Formatting Buttons - [B], [S], [color], [remove] <DONE>
+     *** FIX - Slow Loading. (Virtualbox)
+     *** Configure Plugins   
+     *** Skin - Cirkuit
+     http://www.cirkuit.net/projects/tinymce/cirkuitSkin/
+     *** Skin - TheBigReason
+     http://thebigreason.com/blog/2008/09/29/thebigreason-tinymce-skin
 
-      
-  > Image Upload - 
+  > Image Upload + Crop -   
 
   > UI - CSS / Bootstrap Dialogs
     *** Flash Messages
@@ -113,6 +117,9 @@ Extras
   
   JSFiddle
   http://jsfiddle.net/
+
+  TinyMCE Fiddle
+  http://fiddle.tinymce.com
 
   HTML Escape Chars
   http://www.theukwebdesigncompany.com/articles/entity-escape-characters.php
