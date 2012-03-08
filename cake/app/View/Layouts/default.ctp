@@ -16,7 +16,6 @@ echo $this->Html->script('general.js');
 echo $this->Html->script('datepicker_widget.js');
 echo $this->Html->css('libs/bootstrap.min');
 echo $this->Html->css('theme/smoothness/jquery-ui-1.8.17.custom');
-
 ?>
 </head>
 <body>

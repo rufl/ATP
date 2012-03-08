@@ -6,11 +6,12 @@ Frontend
     - http://flowplayer.org/tools/index.html
     - http://manos.malihu.gr/tuts/jquery_custom_scrollbar.html
 
+  > Grid
+
+  > JQuery Graph Lib/Plugin
+
 --- Todo
 * Layout Frontend (Demo)
-* Image Upload
-* Validação
-* Autenticação
 
 --- WIP
 * Layout Backend (CakePHP)
@@ -61,19 +62,35 @@ Backend - Fase 1 - Teste/Levantamento de Componentes JQuery + Template -
 
 Backend - Fase 2 - Instalação CakePHP + Componentes
 
-  > UI/Form Frameworks - 
+--- WIP
+  > Slider - Upload de imagem (Bootstrap)
+    Ativa desativa campo de upload. [Desativado por Padrão]
 
-  > JQuery UI - 
-  http://jqueryui.com/ <DONE>
+----------------------------------------------------------------    
 
-  > Bootstrap
-    - http://twitter.github.com/bootstrap/ <DONE> 
+--- Todo
+  > Image Upload + Crop - 
 
-  > CakePHP Bootstrappifier
-    - https://github.com/mtkocak/Cakephp-Bootstrappifier <DONE>
-    
+  > UI - CSS / Bootstrap Dialogs
+    *** Flash Messages
+    *** Menus
+    *** Grid + Sort - Eventos
+
+  > Validation - 
+  > Autentication (ACL) -
+  > Admin Panel -
+
 ----------------------------------------------------------------
-  
+
+--- Done
+  > UI/Form Frameworks - 
+    *** JQuery UI - 
+    http://jqueryui.com/ <DONE>
+    *** Bootstrap
+    - http://twitter.github.com/bootstrap/ <DONE> 
+  > CakePHP Bootstrappifier
+    - https://github.com/mtkocak/Cakephp-Bootstrappifier <DONE>   
+
   > Date Picker - JQuery UI - <DONE>
     - http://jqueryui.com/
 
@@ -93,22 +110,7 @@ Backend - Fase 2 - Instalação CakePHP + Componentes
      http://www.cirkuit.net/projects/tinymce/cirkuitSkin/ <DONE>     
      *** Configure Plugins - fullscreen,autolink,inlinepopups,preview,advlist <DONE>
      *** Fix CSS border/Decoration - TinyMCE - Border Radius <DONE>
-          
-
-  > Slider - Upload de imagem (Bootstrap)
-    Ativa desativa campo de upload. [Desativado por Padrão]
-  
-  > Image Upload + Crop - 
-
-  > UI - CSS / Bootstrap Dialogs
-    *** Flash Messages
-    *** Menus
-
-----------------------------------------------------------------
-  > Validation - 
-  > Autentication (ACL)- 
-
-
+      
 Extras
   
   Themes
@@ -134,3 +136,18 @@ Extras
 
   Crunch - LESS Editor
   http://crunchapp.net/
+
+  JQueryUI Slider Checkbox
+  http://widowmaker.kiev.ua/checkbox/
+
+  Blueprint CSS Framework
+  http://www.blueprintcss.org/
+
+  CakePHP Packages
+  http://cakepackages.com/packages
+
+  CakePHP Bootstrap Helper - (Bootstrap v1.4)
+  https://github.com/loadsys/twitter-bootstrap-helper
+
+  Bootstrap Fork - Radio Toggle
+  https://github.com/lvivier/bootstrap/tree/radiotoggle
