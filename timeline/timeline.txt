@@ -1,0 +1,20 @@
+- import data > xls > xml?
+
+php+css+jquery+mysql
+http://tutorialzine.com/2010/01/advanced-event-timeline-with-php-css-jquery
+
+JQuery
+http://ajaxdump.com/2009/09/02/horizontal-scroll-effect-using-jquery/
+
+Widget
+http://www.simile-widgets.org/timeline/
+
+
+
+CSS
+- Headers
+#35DEFF
+
+- Liquid Background
+http://css-tricks.com/766-how-to-resizeable-background-image/
+

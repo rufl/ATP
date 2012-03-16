@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Utility
  * @since         CakePHP(tm) v 0.2.9
@@ -528,7 +528,7 @@ class File {
  * @return Folder Current folder
  * @link http://book.cakephp.org/2.0/en/core-utility-libraries/file-folder.html#File::Folder
  */
-	public function &Folder() {
+	public function &folder() {
 		return $this->Folder;
 	}
 
@@ -561,10 +561,10 @@ class File {
 			$finfo = finfo_open(FILEINFO_MIME);
 			list($type, $charset) = explode(';', finfo_file($finfo, $this->pwd()));
 			return $type;
-		} else if (function_exists('mime_content_type')) {
+		} elseif (function_exists('mime_content_type')) {
 			return mime_content_type($this->pwd());
 		}
 		return false;
 	}
-	
+
 }

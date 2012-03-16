@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Network
  * @since         CakePHP(tm) v 2.0
@@ -89,7 +89,7 @@ class CakeResponse {
 		'cpio' => 'application/x-cpio',
 		'cpt' => 'application/mac-compactpro',
 		'csh' => 'application/x-csh',
-		'csv' =>  array('text/csv', 'application/vnd.ms-excel', 'text/plain'),
+		'csv' => array('text/csv', 'application/vnd.ms-excel', 'text/plain'),
 		'dcr' => 'application/x-director',
 		'dir' => 'application/x-director',
 		'dms' => 'application/octet-stream',
@@ -187,6 +187,8 @@ class CakeResponse {
 		'mp3' => 'audio/mpeg',
 		'mpga' => 'audio/mpeg',
 		'ogg' => 'audio/ogg',
+		'oga' => 'audio/ogg',
+		'spx' => 'audio/ogg',
 		'ra' => 'audio/x-realaudio',
 		'ram' => 'audio/x-pn-realaudio',
 		'rm' => 'audio/x-pn-realaudio',
@@ -194,6 +196,7 @@ class CakeResponse {
 		'snd' => 'audio/basic',
 		'tsi' => 'audio/TSP-audio',
 		'wav' => 'audio/x-wav',
+		'aac' => 'audio/aac',
 		'asc' => 'text/plain',
 		'c' => 'text/plain',
 		'cc' => 'text/plain',
@@ -205,6 +208,7 @@ class CakeResponse {
 		'hh' => 'text/plain',
 		'html' => array('text/html', '*/*'),
 		'htm' => array('text/html', '*/*'),
+		'ics' => 'text/calendar',
 		'm' => 'text/plain',
 		'rtf' => 'text/rtf',
 		'rtx' => 'text/richtext',
@@ -225,6 +229,9 @@ class CakeResponse {
 		'qt' => 'video/quicktime',
 		'viv' => 'video/vnd.vivo',
 		'vivo' => 'video/vnd.vivo',
+		'ogv' => 'video/ogg',
+		'webm' => 'video/webm',
+		'mp4' => 'video/mp4',
 		'gif' => 'image/gif',
 		'ief' => 'image/ief',
 		'jpe' => 'image/jpeg',
@@ -320,6 +327,13 @@ class CakeResponse {
 	protected $_cacheDirectives = array();
 
 /**
+ * Holds cookies to be sent to the client
+ * 
+ * @var array
+ */
+	protected $_cookies = array();
+
+/**
  * Class constructor
  *
  * @param array $options list of parameters to setup the response. Possible values are:
@@ -355,6 +369,7 @@ class CakeResponse {
 		}
 
 		$codeMessage = $this->_statusCodes[$this->_status];
+		$this->_setCookies();
 		$this->_sendHeader("{$this->_protocol} {$this->_status} {$codeMessage}");
 		$this->_setContent();
 		$this->_setContentLength();
@@ -363,6 +378,22 @@ class CakeResponse {
 			$this->_sendHeader($header, $value);
 		}
 		$this->_sendContent($this->_body);
+	}
+
+/**
+ * Sets the cookies that have been added via static method CakeResponse::addCookie()
+ * before any other output is sent to the client.
+ * Will set the cookies in the order they have been set.
+ * 
+ * @return void
+ */
+	protected function _setCookies() {
+		foreach ($this->_cookies as $name => $c) {
+			setcookie(
+				$name, $c['value'], $c['expire'], $c['path'],
+				$c['domain'], $c['secure'], $c['httpOnly']
+			);
+		}
 	}
 
 /**
@@ -724,7 +755,7 @@ class CakeResponse {
 		if ($time == null) {
 			$this->_setCacheControl();
 		}
-		return (bool) $public;
+		return (bool)$public;
 	}
 
 /**
@@ -890,7 +921,7 @@ class CakeResponse {
  **/
 	public function vary($cacheVariances = null) {
 		if ($cacheVariances !== null) {
-			$cacheVariances = (array) $cacheVariances;
+			$cacheVariances = (array)$cacheVariances;
 			$this->_headers['Vary'] = implode(', ', $cacheVariances);
 		}
 		if (isset($this->_headers['Vary'])) {
@@ -930,7 +961,6 @@ class CakeResponse {
 		return null;
 	}
 
-
 /**
  * Returns a DateTime object initialized at the $time param and using UTC
  * as timezone
@@ -941,7 +971,7 @@ class CakeResponse {
 	protected function _getUTCDate($time = null) {
 		if ($time instanceof DateTime) {
 			$result = clone $time;
-		} else if (is_integer($time)) {
+		} elseif (is_integer($time)) {
 			$result = new DateTime(date('Y-m-d H:i:s', $time));
 		} else {
 			$result = new DateTime($time);
@@ -1054,4 +1084,71 @@ class CakeResponse {
 	public function __toString() {
 		return (string)$this->_body;
 	}
+
+/**
+ * Getter/Setter for cookie configs
+ * 
+ * This method acts as a setter/getter depending on the type of the argument.
+ * If the method is called with no arguments, it returns all configurations.
+ * 
+ * If the method is called with a string as argument, it returns either the
+ * given configuration if it is set, or null, if it's not set.
+ * 
+ * If the method is called with an array as argument, it will set the cookie
+ * configuration to the cookie container.
+ * 
+ * @param $options Either null to get all cookies, string for a specific cookie
+ *  or array to set cookie.
+ *  
+ * ### Options (when setting a configuration)
+ *  - name: The Cookie name
+ *  - value: Value of the cookie
+ *  - expire: Time the cookie expires in
+ *  - path: Path the cookie applies to
+ *  - domain: Domain the cookie is for.
+ *  - secure: Is the cookie https?
+ *  - httpOnly: Is the cookie available in the client?
+ * 
+ * ## Examples
+ * 
+ * ### Getting all cookies
+ * 
+ * `$this->cookie()`
+ * 
+ * ### Getting a certain cookie configuration
+ * 
+ * `$this->cookie('MyCookie')`
+ * 
+ * ### Setting a cookie configuration
+ * 
+ * `$this->cookie((array) $options)`
+ * 
+ * @return mixed
+ */
+	public function cookie($options = null) {
+		if ($options === null) {
+			return $this->_cookies;
+		}
+
+		if (is_string($options)) {
+			if (!isset($this->_cookies[$options])) {
+				return null;
+			}
+			return $this->_cookies[$options];
+		}
+
+		$defaults = array(
+			'name' => 'CakeCookie[default]',
+			'value' => '',
+			'expire' => 0,
+			'path' => '/',
+			'domain' => '',
+			'secure' => false,
+			'httpOnly' => false
+		);
+		$options += $defaults;
+
+		$this->_cookies[$options['name']] = $options;
+	}
+
 }

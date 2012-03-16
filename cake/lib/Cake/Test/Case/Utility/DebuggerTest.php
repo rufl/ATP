@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP Project
  * @package       Cake.Test.Case.Utility
  * @since         CakePHP(tm) v 1.2.0.5432
@@ -29,13 +29,13 @@ class DebuggerTestCaseDebugger extends Debugger {
 /**
  * DebuggerTest class
  *
+ * !!! Be careful with changing code below as it may
+ * !!! change line numbers which are used in the tests
+ *
  * @package       Cake.Test.Case.Utility
  */
 class DebuggerTest extends CakeTestCase {
-// !!!
-// !!! Be careful with changing code below as it may
-// !!! change line numbers which are used in the tests
-// !!!
+
 	protected $_restoreError = false;
 
 /**
@@ -201,7 +201,7 @@ class DebuggerTest extends CakeTestCase {
 	}
 
 /**
- * Test that choosing a non-existant format causes an exception
+ * Test that choosing a non-existent format causes an exception
  *
  * @expectedException CakeException
  * @return void
@@ -324,14 +324,26 @@ object(View) {
 	hasRendered => false
 	uuids => array()
 	request => null
+	response => object(CakeResponse) {}
 	elementCache => 'default'
 	int => (int) 2
 	float => (float) 1.333
 }
 TEXT;
-		// $result = str_replace(array("\r\n", "\n"), "", $result);
-		// $expected =  str_replace(array("\r\n", "\n"), "", $expected);
-		$this->assertEquals($expected, $result);
+		$this->assertTextEquals($expected, $result);
+
+		$data = array(
+			1 => 'Index one',
+			5 => 'Index five'
+		);
+		$result = Debugger::exportVar($data);
+		$expected = <<<TEXT
+array(
+	(int) 1 => 'Index one',
+	(int) 5 => 'Index five'
+)
+TEXT;
+		$this->assertTextEquals($expected, $result);
 	}
 
 /**
@@ -391,9 +403,7 @@ TEXT;
 	)
 )</pre>
 TEXT;
-		$result = str_replace(array("\r\n", "\n"), "", $result);
-		$expected =  str_replace(array("\r\n", "\n"), "", $expected);
-		$this->assertEquals($expected, $result);
+		$this->assertTextEquals($expected, $result);
 	}
 
 /**

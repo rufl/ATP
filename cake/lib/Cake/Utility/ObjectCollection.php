@@ -1,12 +1,12 @@
 <?php
 /**
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
@@ -261,7 +261,7 @@ abstract class ObjectCollection {
 	}
 
 /**
- * Gets the list of attached behaviors, or, whether the given behavior is attached
+ * Gets the list of attached objects, or, whether the given object is attached
  *
  * @param string $name Optional.  The name of the behavior to check the status of.  If omitted,
  *   returns an array of currently-attached behaviors
@@ -322,4 +322,5 @@ abstract class ObjectCollection {
 		}
 		return $normal;
 	}
+
 }

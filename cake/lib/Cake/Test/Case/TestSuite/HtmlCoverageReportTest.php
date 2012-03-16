@@ -5,12 +5,12 @@
  * PHP5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Test.Case.TestSuite
  * @since         CakePHP(tm) v 2.0
@@ -29,9 +29,9 @@ class HtmlCoverageReportTest extends CakeTestCase {
 	public function setUp() {
 		parent::setUp();
 		App::build(array(
-			'plugins' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
+			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
 		), App::RESET);
-		CakePlugin::loadAll();
+		CakePlugin::load(array('TestPlugin'));
 		$reporter = new CakeBaseReporter();
 		$reporter->params = array('app' => false, 'plugin' => false, 'group' => false);
 		$coverage = array();

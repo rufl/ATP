@@ -7,12 +7,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Core
  * @since         CakePHP(tm) v 1.2.0.5432
@@ -255,7 +255,9 @@ class ConfigureTest extends CakeTestCase {
  * @return void
  */
 	public function testLoadPlugin() {
-		App::build(array('plugins' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)), true);
+		App::build(array(
+			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
+		), App::RESET);
 		Configure::config('test', new PhpReader());
 		CakePlugin::load('TestPlugin');
 		$result = Configure::load('TestPlugin.load', 'test');
@@ -303,7 +305,7 @@ class ConfigureTest extends CakeTestCase {
 		Configure::write('testing', 'value');
 		Configure::store('store_test', 'default', array('store_test' => 'one'));
 		Configure::delete('testing');
-		$this->assertNull(Configure::read('store_test'), 'Calling store with data shouldnt modify runtime.');
+		$this->assertNull(Configure::read('store_test'), 'Calling store with data shouldn\'t modify runtime.');
 
 		Configure::restore('store_test', 'default');
 		$this->assertEquals('one', Configure::read('store_test'));

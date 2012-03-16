@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *	Licensed under The Open Group Test Suite License
  *	Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Model.Datasource
  * @since         CakePHP(tm) v 1.2.0.4206
@@ -581,7 +581,7 @@ class DboSourceTest extends CakeTestCase {
 	}
 
 /**
- * test that cacheMethod works as exepected
+ * test that cacheMethod works as expected
  *
  * @return void
  */
@@ -651,13 +651,31 @@ class DboSourceTest extends CakeTestCase {
 		$this->testDb->logQuery('Query 2');
 
 		$log = $this->testDb->getLog();
+		$expected = array('query' => 'Query 1', 'params' => array(), 'affected' => '', 'numRows' => '', 'took' => '');
 
-		$expected = array('query' => 'Query 1', 'affected' => '', 'numRows' => '', 'took' => '');
 		$this->assertEquals($log['log'][0], $expected);
-		$expected = array('query' => 'Query 2', 'affected' => '', 'numRows' => '', 'took' => '');
+		$expected = array('query' => 'Query 2', 'params' => array(), 'affected' => '', 'numRows' => '', 'took' => '');
 		$this->assertEquals($log['log'][1], $expected);
 		$expected = array('query' => 'Error 1', 'affected' => '', 'numRows' => '', 'took' => '');
 	}
+
+
+/**
+ * test getting the query log as an array, setting bind params.
+ *
+ * @return void
+ */
+	public function testGetLogParams() {
+		$this->testDb->logQuery('Query 1', array(1,2,'abc'));
+		$this->testDb->logQuery('Query 2', array('field1' => 1, 'field2' => 'abc'));
+
+		$log = $this->testDb->getLog();
+		$expected = array('query' => 'Query 1', 'params' => array(1,2,'abc'), 'affected' => '', 'numRows' => '', 'took' => '');
+		$this->assertEquals($log['log'][0], $expected);
+		$expected = array('query' => 'Query 2', 'params' => array('field1' => 1, 'field2' => 'abc'), 'affected' => '', 'numRows' => '', 'took' => '');
+		$this->assertEquals($log['log'][1], $expected);
+	}
+
 
 /**
  * test that query() returns boolean values from operations like CREATE TABLE
@@ -772,7 +790,7 @@ class DboSourceTest extends CakeTestCase {
  *
  * @return void
  */
-	function testGroupNoModel() {
+	public function testGroupNoModel() {
 		$result = $this->db->group('created');
 		$this->assertEquals(' GROUP BY created', $result);
 	}
@@ -780,7 +798,7 @@ class DboSourceTest extends CakeTestCase {
 /**
  * Test getting the last error.
  */
-	function testLastError() {
+	public function testLastError() {
 		$stmt = $this->getMock('PDOStatement');
 		$stmt->expects($this->any())
 			->method('errorInfo')
@@ -797,32 +815,32 @@ class DboSourceTest extends CakeTestCase {
  * @return void
  **/
 	public function testTransactionLogging() {
-			$conn = $this->getMock('MockPDO');
-			$db = new DboTestSource;
-			$db->setConnection($conn);
-			$conn->expects($this->exactly(2))->method('beginTransaction')
-				->will($this->returnValue(true));
-			$conn->expects($this->once())->method('commit')->will($this->returnValue(true));
-			$conn->expects($this->once())->method('rollback')->will($this->returnValue(true));
+		$conn = $this->getMock('MockPDO');
+		$db = new DboTestSource;
+		$db->setConnection($conn);
+		$conn->expects($this->exactly(2))->method('beginTransaction')
+			->will($this->returnValue(true));
+		$conn->expects($this->once())->method('commit')->will($this->returnValue(true));
+		$conn->expects($this->once())->method('rollback')->will($this->returnValue(true));
 
-			$db->begin();
-			$log = $db->getLog();
-			$expected = array('query' => 'BEGIN', 'affected' => '', 'numRows' => '', 'took' => '');
-			$this->assertEquals($expected, $log['log'][0]);
+		$db->begin();
+		$log = $db->getLog();
+		$expected = array('query' => 'BEGIN', 'params' => array(), 'affected' => '', 'numRows' => '', 'took' => '');
+		$this->assertEquals($expected, $log['log'][0]);
 
-			$db->commit();
-			$expected = array('query' => 'COMMIT', 'affected' => '', 'numRows' => '', 'took' => '');
-			$log = $db->getLog();
-			$this->assertEquals($expected, $log['log'][0]);
+		$db->commit();
+		$expected = array('query' => 'COMMIT', 'params' => array(), 'affected' => '', 'numRows' => '', 'took' => '');
+		$log = $db->getLog();
+		$this->assertEquals($expected, $log['log'][0]);
 
-			$db->begin();
-			$expected = array('query' => 'BEGIN', 'affected' => '', 'numRows' => '', 'took' => '');
-			$log = $db->getLog();
-			$this->assertEquals($expected, $log['log'][0]);
+		$db->begin();
+		$expected = array('query' => 'BEGIN', 'params' => array(), 'affected' => '', 'numRows' => '', 'took' => '');
+		$log = $db->getLog();
+		$this->assertEquals($expected, $log['log'][0]);
 
-			$db->rollback();
-			$expected = array('query' => 'ROLLBACK', 'affected' => '', 'numRows' => '', 'took' => '');
-			$log = $db->getLog();
-			$this->assertEquals($expected, $log['log'][0]);
+		$db->rollback();
+		$expected = array('query' => 'ROLLBACK', 'params' => array(), 'affected' => '', 'numRows' => '', 'took' => '');
+		$log = $db->getLog();
+		$this->assertEquals($expected, $log['log'][0]);
 	}
 }

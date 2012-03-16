@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Model
  * @since         CakePHP(tm) v 1.2.0.4206
@@ -23,6 +23,25 @@ require_once dirname(__FILE__) . DS . 'ModelTestBase.php';
  * @package       Cake.Test.Case.Model
  */
 class ModelReadTest extends BaseModelTest {
+
+/**
+ * testExists function
+ * @retun void
+ */
+	public function testExists() {
+		$this->loadFixtures('User');
+		$TestModel = new User();
+
+		$this->assertTrue($TestModel->exists(1));
+
+		$TestModel->id = 2;
+		$this->assertTrue($TestModel->exists());
+
+		$TestModel->delete();
+		$this->assertFalse($TestModel->exists());
+
+		$this->assertFalse($TestModel->exists(2));
+	}
 
 /**
  * testFetchingNonUniqueFKJoinTableRecords()
@@ -76,7 +95,6 @@ class ModelReadTest extends BaseModelTest {
  * @return void
  */
 	public function testGroupBy() {
-		$db = ConnectionManager::getDataSource('test');
 		$isStrictGroupBy = $this->db instanceof Postgres || $this->db instanceof Sqlite || $this->db instanceof Oracle || $this->db instanceof Sqlserver;
 		$message = 'Postgres, Oracle, SQLite and SQL Server have strict GROUP BY and are incompatible with this test.';
 
@@ -6769,6 +6787,7 @@ class ModelReadTest extends BaseModelTest {
 		$this->db->fullDebug = true;
 		$TestModel->order = 'User.id';
 		$result = $TestModel->find('count');
+		$this->db->fullDebug = $fullDebug;
 		$this->assertEquals($result, 4);
 
 		$log = $this->db->getLog();
@@ -7692,7 +7711,7 @@ class ModelReadTest extends BaseModelTest {
  *
  */
 	public function testVirtualFieldsMysql() {
-		$this->skipIf(!($this->db instanceof Mysql), 'The rest of virtualFieds test only compatible with Mysql.');
+		$this->skipIf(!($this->db instanceof Mysql), 'The rest of virtualFields test only compatible with Mysql.');
 
 		$this->loadFixtures('Post', 'Author');
 		$Post = ClassRegistry::init('Post');
@@ -7784,4 +7803,47 @@ class ModelReadTest extends BaseModelTest {
 		$this->assertEquals($Post->getVirtualField('other_field'), $Post->virtualFields['other_field']);
 		$this->assertEquals($Post->getVirtualField('Post.other_field'), $Post->virtualFields['other_field']);
 	}
+
+
+/**
+ * test that checks for error when NOT condition passed in key and a 1 element array value
+ *
+ * @return void
+ */
+	public function testNotInArrayWithOneValue() {
+		$this->loadFixtures('Article');
+		$Article = new Article();
+		$Article->recursive = -1;
+
+		$result = $Article->find(
+			'all',
+			array(
+				'conditions' => array(
+					'Article.id NOT' => array(1)
+				)
+			)
+		);
+
+		$this->assertTrue(is_array($result) && !empty($result));
+    }
+
+/**
+ * test custom find method
+ *
+ * @return void
+ */
+	public function testfindCustom() {
+		$this->loadFixtures('Article');
+		$Article = new CustomArticle();
+		$data = array('user_id' => 3, 'title' => 'Fourth Article', 'body' => 'Article Body, unpublished', 'published' => 'N');
+		$Article->create($data);
+		$Article->save();
+		$this->assertEquals(4, $Article->id);
+
+		$result = $Article->find('published');
+		$this->assertEquals(3, count($result));
+
+		$result = $Article->find('unPublished');
+		$this->assertEquals(1, count($result));
+    }
 }

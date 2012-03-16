@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.View
  * @since         CakePHP(tm) v 1.2.0.4206
@@ -111,11 +111,11 @@ class ThemeViewTest extends CakeTestCase {
 		$this->PostsController->index();
 		$this->ThemeView = new ThemeView($this->PostsController);
 		App::build(array(
-			'plugins' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS),
+			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS),
 			'View' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'View'. DS)
 		));
 		App::objects('plugins', null, false);
-		CakePlugin::loadAll();
+		CakePlugin::load(array('TestPlugin'));
 	}
 
 /**
@@ -212,7 +212,7 @@ class ThemeViewTest extends CakeTestCase {
 		$View = new TestTheme2View($this->Controller);
 		ob_start();
 		$result = $View->getViewFileName('does_not_exist');
-		$expected = str_replace(array("\t", "\r\n", "\n"), "", ob_get_clean());
+		$expected = ob_get_clean();
 		$this->assertRegExp("/PagesController::/", $expected);
 		$this->assertRegExp("/views(\/|\\\)themed(\/|\\\)my_theme(\/|\\\)pages(\/|\\\)does_not_exist.ctp/", $expected);
 	}
@@ -233,7 +233,7 @@ class ThemeViewTest extends CakeTestCase {
 		$View = new TestTheme2View($this->Controller);
 		ob_start();
 		$result = $View->getLayoutFileName();
-		$expected = str_replace(array("\t", "\r\n", "\n"), "", ob_get_clean());
+		$expected = ob_get_clean();
 		$this->assertRegExp("/Missing Layout/", $expected);
 		$this->assertRegExp("/views(\/|\\\)themed(\/|\\\)my_theme(\/|\\\)layouts(\/|\\\)whatever.ctp/", $expected);
 	}

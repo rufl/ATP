@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Error
  * @since         CakePHP(tm) v 2.0
@@ -64,9 +64,10 @@ class BlueberryComponent extends Component {
  *
  * @return void
  */
-	public function initialize($controller) {
+	public function initialize(Controller $controller) {
 		$this->testName = 'BlueberryComponent';
 	}
+
 }
 
 /**
@@ -108,6 +109,7 @@ class TestErrorController extends Controller {
 		$this->autoRender = false;
 		return 'what up';
 	}
+
 }
 
 /**
@@ -125,6 +127,7 @@ class MyCustomExceptionRenderer extends ExceptionRenderer {
 	public function missingWidgetThing() {
 		echo 'widget thing is missing';
 	}
+
 }
 
 /**
@@ -132,7 +135,8 @@ class MyCustomExceptionRenderer extends ExceptionRenderer {
  *
  * @package       Cake.Test.Case.Error
  */
-class MissingWidgetThingException extends NotFoundException { }
+class MissingWidgetThingException extends NotFoundException {
+}
 
 
 /**
@@ -142,7 +146,7 @@ class MissingWidgetThingException extends NotFoundException { }
  */
 class ExceptionRendererTest extends CakeTestCase {
 
-	public $_restoreError = false;
+	protected $_restoreError = false;
 
 /**
  * setup create a request object to get out of router later.
@@ -152,10 +156,10 @@ class ExceptionRendererTest extends CakeTestCase {
 	public function setUp() {
 		parent::setUp();
 		App::build(array(
-			'views' => array(
-				CAKE . 'Test' . DS . 'test_app' . DS . 'View'. DS
+			'View' => array(
+				CAKE . 'Test' . DS . 'test_app' . DS . 'View' . DS
 			)
-		), true);
+		), App::RESET);
 		Router::reload();
 
 		$request = new CakeRequest(null, false);
@@ -640,7 +644,7 @@ class ExceptionRendererTest extends CakeTestCase {
 			->with('missingHelper')
 			->will($this->throwException($exception));
 
-		$ExceptionRenderer->controller->expects($this->at(3))
+		$ExceptionRenderer->controller->expects($this->at(4))
 			->method('render')
 			->with('error500')
 			->will($this->returnValue(true));
@@ -649,6 +653,44 @@ class ExceptionRendererTest extends CakeTestCase {
 		$ExceptionRenderer->render();
 		sort($ExceptionRenderer->controller->helpers);
 		$this->assertEquals(array('Form', 'Html', 'Session'), $ExceptionRenderer->controller->helpers);
+	}
+
+/**
+ * Test that missing subDir/layoutPath don't cause other fatal errors.
+ *
+ * @return void
+ */
+	public function testMissingSubdirRenderSafe() {
+		$exception = new NotFoundException();
+		$ExceptionRenderer = new ExceptionRenderer($exception);
+
+		$ExceptionRenderer->controller = $this->getMock('Controller');
+		$ExceptionRenderer->controller->helpers = array('Fail', 'Boom');
+		$ExceptionRenderer->controller->layoutPath = 'json';
+		$ExceptionRenderer->controller->subDir = 'json';
+		$ExceptionRenderer->controller->viewClass = 'Json';
+		$ExceptionRenderer->controller->request = $this->getMock('CakeRequest');
+
+		$ExceptionRenderer->controller->expects($this->at(1))
+			->method('render')
+			->with('error400')
+			->will($this->throwException($exception));
+
+		$ExceptionRenderer->controller->expects($this->at(3))
+			->method('render')
+			->with('error500')
+			->will($this->returnValue(true));
+
+		$ExceptionRenderer->controller->response = $this->getMock('CakeResponse');
+		$ExceptionRenderer->controller->response->expects($this->once())
+			->method('type')
+			->with('html');
+
+		$ExceptionRenderer->render();
+		$this->assertEquals('', $ExceptionRenderer->controller->layoutPath);
+		$this->assertEquals('', $ExceptionRenderer->controller->subDir);
+		$this->assertEquals('View', $ExceptionRenderer->controller->viewClass);
+		$this->assertEquals('Errors/', $ExceptionRenderer->controller->viewPath);
 	}
 
 /**

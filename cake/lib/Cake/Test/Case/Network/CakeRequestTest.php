@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Test.Case.Network
  * @since         CakePHP(tm) v 2.0
@@ -172,9 +172,43 @@ class CakeRequestTest extends CakeTestCase {
 			'Article' => array('title')
 		));
 		$request = new CakeRequest('some/path');
-		$this->assertEquals($request->data, $_POST['data']);
+		$this->assertEquals($_POST['data'], $request->data);
 
 		$_POST = array('one' => 1, 'two' => 'three');
+		$request = new CakeRequest('some/path');
+		$this->assertEquals($_POST, $request->data);
+
+		$_POST = array(
+			'data' => array(
+				'Article' => array('title' => 'Testing'),
+			),
+			'action' => 'update'
+		);
+		$request = new CakeRequest('some/path');
+		$expected = array(
+			'Article' => array('title' => 'Testing'),
+			'action' => 'update'
+		);
+		$this->assertEquals($expected, $request->data);
+
+		$_POST = array('data' => array(
+			'Article' => array('title'),
+			'Tag' => array('Tag' => array(1, 2))
+		));
+		$request = new CakeRequest('some/path');
+		$this->assertEquals($_POST['data'], $request->data);
+
+		$_POST = array('data' => array(
+			'Article' => array('title' => 'some title'),
+			'Tag' => array('Tag' => array(1, 2))
+		));
+		$request = new CakeRequest('some/path');
+		$this->assertEquals($_POST['data'], $request->data);
+
+		$_POST = array(
+			'a' => array(1, 2),
+			'b' => array(1, 2)
+		);
 		$request = new CakeRequest('some/path');
 		$this->assertEquals($_POST, $request->data);
 	}
@@ -766,6 +800,11 @@ class CakeRequestTest extends CakeTestCase {
 
 		$_SERVER['TEST_VAR'] = 'wrong';
 		$this->assertFalse($request->is('compare'), 'Value mis-match failed.');
+		
+		$request->addDetector('compareCamelCase', array('env' => 'TEST_VAR', 'value' => 'foo'));
+
+		$_SERVER['TEST_VAR'] = 'foo';
+		$this->assertTrue($request->is('compareCamelCase'), 'Value match failed.');
 
 		$request->addDetector('banana', array('env' => 'TEST_VAR', 'pattern' => '/^ban.*$/'));
 		$_SERVER['TEST_VAR'] = 'banana';
@@ -781,7 +820,7 @@ class CakeRequestTest extends CakeTestCase {
 		$_SERVER['HTTP_USER_AGENT'] = 'iPhone 3.0';
 		$this->assertTrue($request->isMobile());
 
-		$request->addDetector('callme', array('env' => 'TEST_VAR', 'callback' => array($this, '_detectCallback')));
+		$request->addDetector('callme', array('env' => 'TEST_VAR', 'callback' => array($this, 'detectCallback')));
 
 		$request->addDetector('index', array('param' => 'action', 'value' => 'index'));
 		$request->params['action'] = 'index';
@@ -802,7 +841,7 @@ class CakeRequestTest extends CakeTestCase {
  *
  * @return void
  */
-	function _detectCallback($request) {
+	public function detectCallback($request) {
 		return $request->return == true;
 	}
 
@@ -1112,9 +1151,25 @@ class CakeRequestTest extends CakeTestCase {
  * @return void
  */
 	public function testGetParamsWithDot() {
+		$_GET = array();
 		$_GET['/posts/index/add_add'] = '';
 		$_SERVER['PHP_SELF'] = '/cake_dev/app/webroot/index.php';
 		$_SERVER['REQUEST_URI'] = '/cake_dev/posts/index/add.add';
+
+		$request = new CakeRequest();
+		$this->assertEquals(array(), $request->query);
+	}
+
+/**
+ * Test that a request with urlencoded bits in the main GET parameter are filtered out.
+ *
+ * @return void
+ */
+	public function testGetParamWithUrlencodedElement() {
+		$_GET = array();
+		$_GET['/posts/add/∂∂'] = '';
+		$_SERVER['PHP_SELF'] = '/cake_dev/app/webroot/index.php';
+		$_SERVER['REQUEST_URI'] = '/cake_dev/posts/add/%E2%88%82%E2%88%82';
 
 		$request = new CakeRequest();
 		$this->assertEquals(array(), $request->query);
@@ -1682,7 +1737,7 @@ XML;
  * @param mixed $env
  * @return void
  */
-	function __loadEnvironment($env) {
+	protected function __loadEnvironment($env) {
 		if (isset($env['App'])) {
 			Configure::write('App', $env['App']);
 		}

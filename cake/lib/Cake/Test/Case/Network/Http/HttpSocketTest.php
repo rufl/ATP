@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Network.Http
  * @since         CakePHP(tm) v 1.2.0.4206
@@ -107,7 +107,7 @@ class TestHttpSocket extends HttpSocket {
  *
  * @param array $uri A $uri array, or uses $this->config if left empty
  * @param string $uriTemplate The Uri template/format to use
- * @return string A fully qualified URL formated according to $uriTemplate
+ * @return string A fully qualified URL formatted according to $uriTemplate
  */
 	public function buildUri($uri = array(), $uriTemplate = '%scheme://%user:%pass@%host:%port/%path?%query#%fragment') {
 		return parent::_buildUri($uri, $uriTemplate);
@@ -230,6 +230,7 @@ class HttpSocketTest extends CakeTestCase {
 		$this->Socket->__construct('http://www.cakephp.org:23/');
 		$baseConfig['host'] = $baseConfig['request']['uri']['host'] = 'www.cakephp.org';
 		$baseConfig['port'] = $baseConfig['request']['uri']['port'] = 23;
+		$baseConfig['request']['uri']['scheme'] = 'http';
 		$baseConfig['protocol'] = getprotobyname($baseConfig['protocol']);
 		$this->assertEquals($this->Socket->config, $baseConfig);
 
@@ -289,9 +290,11 @@ class HttpSocketTest extends CakeTestCase {
 		);
 		$this->assertEquals($this->Socket->config, $expected);
 		$this->assertTrue($r);
+
 		$r = $this->Socket->configUri('/this-is-broken');
 		$this->assertEquals($this->Socket->config, $expected);
 		$this->assertFalse($r);
+
 		$r = $this->Socket->configUri(false);
 		$this->assertEquals($this->Socket->config, $expected);
 		$this->assertFalse($r);
@@ -554,7 +557,7 @@ class HttpSocketTest extends CakeTestCase {
 
 /**
  * Test the scheme + port keys
- * 
+ *
  * @return void
  */
 	public function testGetWithSchemeAndPort() {
@@ -570,6 +573,26 @@ class HttpSocketTest extends CakeTestCase {
 		);
 		$response = $this->Socket->request($request);
 		$this->assertContains('Host: cakephp.org:8080', $this->Socket->request['header']);
+	}
+
+/**
+ * Test urls like http://cakephp.org/index.php?somestring without key/value pair for query
+ *
+ * @return void
+ */
+	public function testRequestWithStringQuery() {
+		$this->Socket->reset();
+		$request = array(
+			'uri' => array(
+				'scheme' => 'http',
+				'host' => 'cakephp.org',
+				'path' => 'index.php',
+				'query' => 'somestring'
+			),
+			'method' => 'GET'
+		);
+		$response = $this->Socket->request($request);
+		$this->assertContains("GET /index.php?somestring HTTP/1.1", $this->Socket->request['line']);
 	}
 
 /**
@@ -947,11 +970,16 @@ class HttpSocketTest extends CakeTestCase {
 			->method('request')
 			->with(array('method' => 'GET', 'uri' => 'http://www.google.com/', 'version' => '1.0'));
 
+		$this->RequestSocket->expects($this->at(5))
+			->method('request')
+			->with(array('method' => 'GET', 'uri' => 'https://secure.example.com/test.php?one=two'));
+
 		$this->RequestSocket->get('http://www.google.com/');
 		$this->RequestSocket->get('http://www.google.com/', array('foo' => 'bar'));
 		$this->RequestSocket->get('http://www.google.com/', 'foo=bar');
 		$this->RequestSocket->get('http://www.google.com/?foo=bar', array('foobar' => '42', 'foo' => '23'));
 		$this->RequestSocket->get('http://www.google.com/', null, array('version' => '1.0'));
+		$this->RequestSocket->get('https://secure.example.com/test.php', array('one' => 'two'));
 	}
 
 /**
@@ -1422,7 +1450,15 @@ class HttpSocketTest extends CakeTestCase {
 			),
 			'empty' => ''
 		);
-		$this->assertEquals($query, $expectedQuery);
+		$this->assertEquals($expectedQuery, $query);
+
+		$query = 'openid.ns=example.com&foo=bar&foo=baz';
+		$result = $this->Socket->parseQuery($query);
+		$expected = array(
+			'openid.ns' => 'example.com',
+			'foo' => array('bar', 'baz')
+		);
+		$this->assertEquals($expected, $result);
 	}
 
 /**
@@ -1510,7 +1546,7 @@ class HttpSocketTest extends CakeTestCase {
 	}
 
 /**
- * Test that HttpSocket::escapeToken is escaping all characters as descriped in RFC 2616 (HTTP 1.1 specs)
+ * Test that HttpSocket::escapeToken is escaping all characters as described in RFC 2616 (HTTP 1.1 specs)
  *
  * @return void
  */

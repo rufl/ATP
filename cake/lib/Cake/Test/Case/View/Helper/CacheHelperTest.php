@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.View.Helper
  * @since         CakePHP(tm) v 1.2.0.4206
@@ -85,7 +85,7 @@ class CacheHelperTest extends CakeTestCase {
 		Configure::write('Cache.disable', false);
 		App::build(array(
 			'View' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'View'. DS)
-		), true);
+		), App::RESET);
 	}
 
 /**
@@ -228,7 +228,7 @@ class CacheHelperTest extends CakeTestCase {
  *
  * @return void
  */
-	public function testComplexNoCache () {
+	public function testComplexNoCache() {
 		$this->Controller->cache_parsing();
 		$this->Controller->request->addParams(array(
 			'controller' => 'cache_test',
@@ -525,9 +525,9 @@ class CacheHelperTest extends CakeTestCase {
 /**
  * test ControllerName contains AppName
  *
- * This test verifys view cache is created correctly when the app name is contained in part of the controller name.
+ * This test verifies view cache is created correctly when the app name is contained in part of the controller name.
  * (webapp Name) base name is 'cache' controller is 'cacheTest' action is 'cache_name'
- * apps url would look somehing like http://localhost/cache/cacheTest/cache_name
+ * apps url would look something like http://localhost/cache/cacheTest/cache_name
  *
  * @return void
  **/

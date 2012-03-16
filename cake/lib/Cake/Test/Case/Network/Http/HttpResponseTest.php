@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Network.Http
  * @since         CakePHP(tm) v 1.2.0.4206
@@ -39,7 +39,7 @@ class TestHttpResponse extends HttpResponse {
 /**
  * Convenience method for testing protected method
  *
- * @param string $body A string continaing the body to decode
+ * @param string $body A string containing the body to decode
  * @param mixed $encoding Can be false in case no encoding is being used, or a string representing the encoding
  * @return mixed Array or false
  */
@@ -50,7 +50,7 @@ class TestHttpResponse extends HttpResponse {
 /**
  * Convenience method for testing protected method
  *
- * @param string $body A string continaing the chunked body to decode
+ * @param string $body A string containing the chunked body to decode
  * @return mixed Array or false
  */
 	public function decodeChunkedBody($body) {
@@ -123,7 +123,7 @@ class HttpResponseTest extends CakeTestCase {
 	}
 
 /**
- * testGetHeadr
+ * testGetHeader
  *
  * @return void
  */

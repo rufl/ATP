@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Cache
  * @since         CakePHP(tm) v 1.2.0.5432
@@ -87,8 +87,8 @@ class CacheTest extends CakeTestCase {
 	public function testConfigWithLibAndPluginEngines() {
 		App::build(array(
 			'Lib' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Lib' . DS),
-			'plugins' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
-		), true);
+			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
+		), App::RESET);
 		CakePlugin::load('TestPlugin');
 
 		$settings = array('engine' => 'TestAppCache', 'path' => TMP, 'prefix' => 'cake_test_');
@@ -125,7 +125,6 @@ class CacheTest extends CakeTestCase {
 		));
 		$read = Cache::read('Test', 'invalid');
 	}
-
 
 /**
  * Test reading from a config that is undefined.
@@ -205,7 +204,7 @@ class CacheTest extends CakeTestCase {
 	public function testWritingWithConfig() {
 		$_cacheConfigSessions = Cache::config('sessions');
 
-		Cache::write('test_somthing', 'this is the test data', 'tests');
+		Cache::write('test_something', 'this is the test data', 'tests');
 
 		$expected = array(
 			'path' => TMP . 'sessions' . DS,
@@ -258,9 +257,9 @@ class CacheTest extends CakeTestCase {
  */
 	public function testDrop() {
 		App::build(array(
-			'libs' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Lib' . DS),
-			'plugins' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
-		), true);
+			'Lib' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Lib' . DS),
+			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
+		), App::RESET);
 
 		$result = Cache::drop('some_config_that_does_not_exist');
 		$this->assertFalse($result);
@@ -310,9 +309,9 @@ class CacheTest extends CakeTestCase {
  */
 	public function testWriteTriggerError() {
 		App::build(array(
-			'libs' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Lib' . DS),
-			'plugins' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
-		), true);
+			'Lib' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Lib' . DS),
+			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
+		), App::RESET);
 
 		Cache::config('test_trigger', array('engine' => 'TestAppCache', 'prefix' => ''));
 		try {

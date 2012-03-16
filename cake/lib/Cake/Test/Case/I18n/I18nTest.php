@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.I18n
  * @since         CakePHP(tm) v 1.2.0.5432
@@ -33,10 +33,10 @@ class I18nTest extends CakeTestCase {
 	public function setUp() {
 		Cache::delete('object_map', '_cake_core_');
 		App::build(array(
-			'locales' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Locale' . DS),
-			'plugins' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
-		), true);
-		CakePlugin::loadAll();
+			'Locale' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Locale' . DS),
+			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
+		), App::RESET);
+		CakePlugin::load(array('TestPlugin'));
 	}
 
 /**
@@ -57,13 +57,12 @@ class I18nTest extends CakeTestCase {
  */
 	public function testTranslationCaching() {
 		Configure::write('Config.language', 'cache_test_po');
-		$i18n = I18n::getInstance();
 
 		// reset internally stored entries
 		I18n::clear();
 
 		Cache::clear(false, '_cake_core_');
-		$lang = Configure::read('Config.language');#$i18n->l10n->locale;
+		$lang = Configure::read('Config.language');
 
 		Cache::config('_cake_core_', Cache::config('default'));
 
@@ -2315,7 +2314,7 @@ class I18nTest extends CakeTestCase {
  *
  * @return void
  */
-	public function testSetLanguageWithSession () {
+	public function testSetLanguageWithSession() {
 		$_SESSION['Config']['language'] = 'po';
 		$singular = $this->__singular();
 		$this->assertEquals('Po (translated)', $singular);
@@ -2355,7 +2354,7 @@ class I18nTest extends CakeTestCase {
  *
  * @return void
  */
-	public function testNoCoreTranslation () {
+	public function testNoCoreTranslation() {
 		Configure::write('Config.language', 'po');
 		$singular = $this->__singular();
 		$this->assertEquals('Po (translated)', $singular);
@@ -2399,7 +2398,7 @@ class I18nTest extends CakeTestCase {
  */
 	public function testPluginTranslation() {
 		App::build(array(
-			'plugins' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
+			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
 		));
 
 		Configure::write('Config.language', 'po');
@@ -2440,7 +2439,7 @@ class I18nTest extends CakeTestCase {
  *
  * @return void
  */
-	public function testPoMultipleLineTranslation () {
+	public function testPoMultipleLineTranslation() {
 		Configure::write('Config.language', 'po');
 
 		$string = "This is a multiline translation\n";
@@ -2513,7 +2512,7 @@ class I18nTest extends CakeTestCase {
  *
  * @return void
  */
-	public function testPoNoTranslationNeeded () {
+	public function testPoNoTranslationNeeded() {
 		Configure::write('Config.language', 'po');
 		$result = __('No Translation needed');
 		$this->assertEquals('No Translation needed', $result);
@@ -2524,7 +2523,8 @@ class I18nTest extends CakeTestCase {
  *
  * @return void
  */
-	public function testPoQuotedString () {
+	public function testPoQuotedString() {
+		Configure::write('Config.language', 'po');
 		$expected = 'this is a "quoted string" (translated)';
 		$this->assertEquals($expected, __('this is a "quoted string"'));
 	}

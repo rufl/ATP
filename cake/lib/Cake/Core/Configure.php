@@ -1,16 +1,12 @@
 <?php
 /**
- * Configure class
- *
- * PHP 5
- *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Core
  * @since         CakePHP(tm) v 1.0.0.2363
@@ -18,6 +14,7 @@
  */
 
 App::uses('Set', 'Utility');
+App::uses('ConfigReaderInterface', 'Configure');
 
 /**
  * Configuration class. Used for managing runtime configuration information.
@@ -72,15 +69,12 @@ class Configure {
 				'www_root' => WWW_ROOT
 			));
 
-			if (!include(APP . 'Config' . DS . 'core.php')) {
+			if (!include APP . 'Config' . DS . 'core.php') {
 				trigger_error(__d('cake_dev', "Can't find application core file. Please create %score.php, and make sure it is readable by PHP.", APP . 'Config' . DS), E_USER_ERROR);
 			}
 			App::$bootstrapping = false;
 			App::init();
 			App::build();
-			if (!include(APP . 'Config' . DS . 'bootstrap.php')) {
-				trigger_error(__d('cake_dev', "Can't find application bootstrap file. Please create %sbootstrap.php, and make sure it is readable by PHP.", APP . 'Config' . DS), E_USER_ERROR);
-			}
 			$level = -1;
 			if (isset(self::$_values['Error']['level'])) {
 				error_reporting(self::$_values['Error']['level']);
@@ -91,6 +85,9 @@ class Configure {
 			}
 			if (!empty(self::$_values['Exception']['handler'])) {
 				set_exception_handler(self::$_values['Exception']['handler']);
+			}
+			if (!include APP . 'Config' . DS . 'bootstrap.php') {
+				trigger_error(__d('cake_dev', "Can't find application bootstrap file. Please create %sbootstrap.php, and make sure it is readable by PHP.", APP . 'Config' . DS), E_USER_ERROR);
 			}
 		}
 	}
@@ -338,21 +335,5 @@ class Configure {
 		}
 		return false;
 	}
-}
 
-/**
- * An interface for creating objects compatible with Configure::load()
- *
- * @package       Cake.Core
- */
-interface ConfigReaderInterface {
-/**
- * Read method is used for reading configuration information from sources.
- * These sources can either be static resources like files, or dynamic ones like
- * a database, or other datasource.
- *
- * @param string $key
- * @return array An array of data to merge into the runtime configuration
- */
-	public function read($key);
 }

@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.TestSuite.Fixture
  * @since         CakePHP(tm) v 2.0
@@ -127,7 +127,7 @@ class CakeFixtureManager {
 			} else {
 				$fixturePaths = array(
 					TESTS . 'Fixture',
-					CAKE  . 'Test' . DS . 'Fixture'
+					CAKE . 'Test' . DS . 'Fixture'
 				);
 			}
 
@@ -135,7 +135,7 @@ class CakeFixtureManager {
 				$className = Inflector::camelize($fixture);
 				if (is_readable($path . DS . $className . 'Fixture.php')) {
 					$fixtureFile = $path . DS . $className . 'Fixture.php';
-					require_once($fixtureFile);
+					require_once $fixtureFile;
 					$fixtureClass = $className . 'Fixture';
 					$this->_loaded[$fixtureIndex] = new $fixtureClass();
 					$this->_fixtureMap[$fixtureClass] = $this->_loaded[$fixtureIndex];
@@ -177,7 +177,7 @@ class CakeFixtureManager {
 	}
 
 /**
- * Crates the fixtures tables and inserts data on them
+ * Creates the fixtures tables and inserts data on them.
  *
  * @param CakeTestCase $test the test to inspect for fixture loading
  * @return void
@@ -225,9 +225,10 @@ class CakeFixtureManager {
 	}
 
 /**
- * Truncates the fixtures tables
+ * Creates a single fixture table and loads data into it.
  *
- * @param CakeTestCase $test the test to inspect for fixture unloading
+ * @param string $name of the fixture
+ * @param DataSource $db DataSource instance or leave null to get DataSource from the fixture
  * @return void
  * @throws UnexpectedValueException if $name is not a previously loaded class
  */

@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       Cake.Test.Case.Model.Datasource.Database
  * @since         CakePHP(tm) v 1.2.0
@@ -42,7 +42,7 @@ class DboSqliteTestDb extends Sqlite {
  * @param mixed $sql
  * @return void
  */
-	function _execute($sql, $params = array(), $prepareOptions = array()) {
+	protected function _execute($sql, $params = array(), $prepareOptions = array()) {
 		$this->simulated[] = $sql;
 		return null;
 	}
@@ -278,13 +278,13 @@ class SqliteTest extends CakeTestCase {
 			'user' => array(
 				'type' => 'string',
 				'length' => 255,
-				'null' => false,
+				'null' => true,
 				'default' => null
 			),
 			'password' => array(
 				'type' => 'string',
 				'length' => 255,
-				'null' => false,
+				'null' => true,
 				'default' => null
 			),
 			'created' => array(

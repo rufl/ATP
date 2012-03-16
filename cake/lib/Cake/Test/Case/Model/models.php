@@ -7,17 +7,52 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Model
  * @since         CakePHP(tm) v 1.2.0.6464
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+App::uses('Model', 'Model');
+/**
+ * AppModel class
+ *
+ * @package       Cake.Test.Case.Model
+ */
+class AppModel extends Model {
+
+/**
+ * findMethods property
+ *
+ * @var array
+ */
+	public $findMethods = array('published' => true);
+
+/**
+ * useDbConfig property
+ *
+ * @var array
+ */
+	public $useDbConfig = 'test';
+
+/**
+ * _findPublished custom find
+ *
+ * @return array
+ */
+	public function _findPublished($state, $query, $results = array()) {
+        if ($state === 'before') {
+            $query['conditions']['published'] = 'Y';
+            return $query;
+        }
+        return $results;
+	}
+}
 
 /**
  * Test class
@@ -183,7 +218,7 @@ class User extends CakeTestModel {
  *
  * @return bool
 */
-	public function beforeFind ($queryData) {
+	public function beforeFind($queryData) {
 		if (!empty($queryData['lazyLoad'])) {
 			if (!isset($this->Article, $this->Comment, $this->ArticleFeatured)) {
 				throw new Exception('Unavailable associations');
@@ -257,7 +292,7 @@ class Article extends CakeTestModel {
  * @param mixed $title
  * @return void
  */
-	static function titleDuplicate ($title) {
+	static function titleDuplicate($title) {
 		if ($title === 'My Article Title') {
 			return false;
 		}
@@ -641,6 +676,13 @@ class Attachment extends CakeTestModel {
  * @var string 'Attachment'
  */
 	public $name = 'Attachment';
+
+/**
+ * belongsTo property
+ *
+ * @var array
+ */
+	public $belongsTo = array('Comment');
 }
 
 /**
@@ -2063,7 +2105,7 @@ class ValidationTest1 extends CakeTestModel {
 	}
 
 /**
- * Custom validator with messaage
+ * Custom validator with message
  *
  * @return array
  */
@@ -3280,19 +3322,19 @@ class TransactionManyTestModel extends CakeTestModel {
 }
 
 class Site extends CakeTestModel {
-	var $name = 'Site';
-	var $useTable = 'sites';
+	public $name = 'Site';
+	public $useTable = 'sites';
 
-	var $hasAndBelongsToMany = array(
+	public $hasAndBelongsToMany = array(
 		'Domain' => array('unique' => 'keepExisting'),
 		);
 }
 
 class Domain extends CakeTestModel {
-	var $name = 'Domain';
-	var $useTable = 'domains';
+	public $name = 'Domain';
+	public $useTable = 'domains';
 
-	var $hasAndBelongsToMany = array(
+	public $hasAndBelongsToMany = array(
 		'Site' => array('unique' => 'keepExisting'),
 		);
 }
@@ -4680,5 +4722,40 @@ class Armor extends CakeTestModel {
 class ArmorsPlayer extends CakeTestModel {
 
 	public $useDbConfig = 'test_database_three';
+
+}
+
+/**
+ * CustomArticle class
+ *
+ * @package       Cake.Test.Case.Model
+ */
+class CustomArticle extends AppModel {
+/**
+ * useTable property
+ *
+ * @var string
+ */
+	public $useTable = 'articles';
+
+/**
+ * findMethods property
+ *
+ * @var array
+ */
+	public $findMethods = array('unPublished' => true);
+
+/**
+ * _findUnPublished custom find
+ *
+ * @return array
+ */
+	public function _findUnPublished($state, $query, $results = array()) {
+        if ($state === 'before') {
+            $query['conditions']['published'] = 'N';
+            return $query;
+        }
+        return $results;
+	}
 
 }

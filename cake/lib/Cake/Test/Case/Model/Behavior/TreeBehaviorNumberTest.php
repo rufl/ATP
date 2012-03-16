@@ -7,12 +7,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Model.Behavior
  * @since         CakePHP(tm) v 1.2.0.5330
@@ -151,11 +151,11 @@ class TreeBehaviorNumberTest extends CakeTestCase {
 	}
 
 /**
- * testDetectNoneExistantParent method
+ * testDetectNoneExistentParent method
  *
  * @return void
  */
-	public function testDetectNoneExistantParent() {
+	public function testDetectNoneExistentParent() {
 		extract($this->settings);
 		$this->Tree = new $modelClass();
 		$this->Tree->initialize(2, 2);
@@ -1291,7 +1291,6 @@ class TreeBehaviorNumberTest extends CakeTestCase {
  * @return void
  */
 	public function testFindThreaded() {
-		$this->loadFixtures('Person');
 		$Model = new Person();
 		$Model->recursive = -1;
 		$Model->Behaviors->attach('Tree', array('parent' => 'mother_id'));

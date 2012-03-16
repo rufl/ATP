@@ -1,10 +1,13 @@
 <?php
 class PostsController extends AppController {
     public $name = 'Posts';
-    #public $helpers = array('Html', 'Form');
     public $helpers = array('Html', 'Form', 'Form2','TinyMCE.TinyMCE');
     
     public function index() {
+         $this->set('posts', $this->Post->find('all'));
+    }
+
+    public function admin() {
          $this->set('posts', $this->Post->find('all'));
     }
 
@@ -33,7 +36,7 @@ function edit($id = null) {
     } else {
         if ($this->Post->save($this->request->data)) {
             $this->Session->setFlash('As informações do evento foram atualizadas.');
-            $this->redirect(array('action' => 'index'));
+            $this->redirect(array('action' => 'admin'));
         } else {
             $this->Session->setFlash('Não foi possível atualizar o evento.');
         }
@@ -50,7 +53,7 @@ public function add() {
     if ($this->request->is('post')) {
         if ($this->Post->save($this->request->data)) {
             $this->Session->setFlash('O evento foi criado.');
-            $this->redirect(array('action' => 'index'));
+            $this->redirect(array('action' => 'admin'));
         } else {
             $this->Session->setFlash('Não foi possível criar o evento.');
         }

@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Routing
  * @since         CakePHP(tm) v 1.2.0.4206
@@ -20,7 +20,7 @@ App::uses('Dispatcher', 'Routing');
 
 if (!class_exists('AppController', false)) {
 	require_once CAKE . 'Test' . DS . 'test_app' . DS . 'Controller' . DS . 'AppController.php';
-} elseif (!defined('APP_CONTROLLER_EXISTS')){
+} elseif (!defined('APP_CONTROLLER_EXISTS')) {
 	define('APP_CONTROLLER_EXISTS', true);
 }
 
@@ -30,9 +30,11 @@ if (!class_exists('AppController', false)) {
  * @package       Cake.Test.Case.Routing
  */
 class DispatcherMockCakeResponse extends CakeResponse {
+
 	protected function _sendHeader($name, $value = null) {
 		return $name . ' ' . $value;
 	}
+
 }
 
 /**
@@ -65,11 +67,15 @@ class MyPluginAppController extends AppController {
 }
 
 abstract class DispatcherTestAbstractController extends Controller {
+
 	abstract public function index();
+
 }
 
 interface DispatcherTestInterfaceController {
+
 	public function index();
+
 }
 
 /**
@@ -120,6 +126,7 @@ class MyPluginController extends MyPluginAppController {
 	public function admin_add($id = null) {
 		return $id;
 	}
+
 }
 
 /**
@@ -212,6 +219,7 @@ class OtherPagesController extends MyPluginAppController {
 	public function index() {
 		return true;
 	}
+
 }
 
 /**
@@ -252,6 +260,7 @@ class TestDispatchPagesController extends AppController {
 	public function camelCased() {
 		return true;
 	}
+
 }
 
 /**
@@ -300,6 +309,7 @@ class ArticlesTestController extends ArticlesTestAppController {
 	public function index() {
 		return true;
 	}
+
 }
 
 /**
@@ -361,6 +371,7 @@ class SomePostsController extends AppController {
 	public function change() {
 		return true;
 	}
+
 }
 
 /**
@@ -403,7 +414,7 @@ class TestCachedPagesController extends Controller {
 	);
 
 /**
- * Mock out the reponse object so it doesn't send headers.
+ * Mock out the response object so it doesn't send headers.
  *
  * @var string
  */
@@ -461,6 +472,7 @@ class TestCachedPagesController extends Controller {
 		$this->viewClass = 'Theme';
 		$this->theme = 'TestTheme';
 	}
+
 }
 
 /**
@@ -492,6 +504,7 @@ class TimesheetsController extends Controller {
 	public function index() {
 		return true;
 	}
+
 }
 
 /**
@@ -733,7 +746,7 @@ class DispatcherTest extends CakeTestCase {
  */
 	public function testDispatchBasic() {
 		App::build(array(
-			'View' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'View'. DS)
+			'View' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'View' . DS)
 		));
 		$Dispatcher = new TestDispatcher();
 		Configure::write('App.baseUrl', '/index.php');
@@ -930,7 +943,6 @@ class DispatcherTest extends CakeTestCase {
 		$this->assertSame($controller->action, 'add');
 		$this->assertEquals($controller->params['named'], array('param' => 'value', 'param2' => 'value2'));
 
-
 		Router::reload();
 		require CAKE . 'Config' . DS . 'routes.php';
 		$Dispatcher = new TestDispatcher();
@@ -950,7 +962,6 @@ class DispatcherTest extends CakeTestCase {
 
 		$expected = $pluginUrl;
 		$this->assertEquals($controller->params['controller'], $expected);
-
 
 		Configure::write('Routing.prefixes', array('admin'));
 
@@ -994,7 +1005,7 @@ class DispatcherTest extends CakeTestCase {
 			'plugin' => 'articles_test',
 			'action' => 'admin_index',
 			'prefix' => 'admin',
-			'admin' =>  true,
+			'admin' => true,
 			'return' => 1
 		);
 		foreach ($expected as $key => $value) {
@@ -1037,9 +1048,9 @@ class DispatcherTest extends CakeTestCase {
 
 		Router::reload();
 		App::build(array(
-			'plugins' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
-		), true);
-		CakePlugin::loadAll();
+			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
+		), App::RESET);
+		CakePlugin::load(array('TestPlugin', 'TestPluginTwo'));
 
 		$Dispatcher = new TestDispatcher();
 		$Dispatcher->base = false;
@@ -1113,9 +1124,9 @@ class DispatcherTest extends CakeTestCase {
 	public function testTestPluginDispatch() {
 		$Dispatcher = new TestDispatcher();
 		App::build(array(
-			'plugins' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
-		), APP::RESET);
-		CakePlugin::loadAll();
+			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
+		), App::RESET);
+		CakePlugin::load(array('TestPlugin', 'TestPluginTwo'));
 		Router::reload();
 		Router::parse('/');
 
@@ -1172,11 +1183,11 @@ class DispatcherTest extends CakeTestCase {
 		Router::reload();
 
 		App::build(array(
-			'plugins' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS),
-			'vendors' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Vendor'. DS),
-			'View' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'View'. DS)
+			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS),
+			'Vendor' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Vendor' . DS),
+			'View' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'View' . DS)
 		));
-		CakePlugin::loadAll();
+		CakePlugin::load(array('TestPlugin', 'TestPluginTwo'));
 
 		$Dispatcher = new TestDispatcher();
 		$response = $this->getMock('CakeResponse', array('_sendHeader'));
@@ -1291,10 +1302,10 @@ class DispatcherTest extends CakeTestCase {
 
 		App::build(array(
 			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS),
-			'Vendor' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Vendor'. DS),
-			'View' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'View'. DS)
+			'Vendor' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Vendor' . DS),
+			'View' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'View' . DS)
 		));
-		CakePlugin::loadAll();
+		CakePlugin::load(array('TestPlugin', 'PluginJs'));
 
 		$Dispatcher = new TestDispatcher();
 		$response = $this->getMock('CakeResponse', array('_sendHeader'));
@@ -1302,7 +1313,7 @@ class DispatcherTest extends CakeTestCase {
 		$Dispatcher->dispatch(new CakeRequest($url), $response);
 		$result = ob_get_clean();
 
-		$path = CAKE. 'Test' . DS . 'test_app' . DS . str_replace('/', DS, $file);
+		$path = CAKE . 'Test' . DS . 'test_app' . DS . str_replace('/', DS, $file);
 		$file = file_get_contents($path);
 		$this->assertEquals($file, $result);
 
@@ -1396,7 +1407,7 @@ class DispatcherTest extends CakeTestCase {
 
 		App::build(array(
 			'View' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'View' . DS),
-		), true);
+		), App::RESET);
 
 		$dispatcher = new TestDispatcher();
 		$request = new CakeRequest($url);
@@ -1410,11 +1421,9 @@ class DispatcherTest extends CakeTestCase {
 		$dispatcher->cached($request->here());
 		$cached = ob_get_clean();
 
-		$result = str_replace(array("\t", "\r\n", "\n"), "", $out);
 		$cached = preg_replace('/<!--+[^<>]+-->/', '', $cached);
-		$expected =  str_replace(array("\t", "\r\n", "\n"), "", $cached);
 
-		$this->assertEquals($expected, $result);
+		$this->assertTextEquals($cached, $out);
 
 		$filename = $this->__cachePath($request->here());
 		unlink($filename);
@@ -1494,7 +1503,7 @@ class DispatcherTest extends CakeTestCase {
  *
  * @return void
  */
-	function __backupEnvironment() {
+	protected function __backupEnvironment() {
 		return array(
 			'App' => Configure::read('App'),
 			'GET' => $_GET,
@@ -1508,7 +1517,7 @@ class DispatcherTest extends CakeTestCase {
  *
  * @return void
  */
-	function __reloadEnvironment() {
+	protected function __reloadEnvironment() {
 		foreach ($_GET as $key => $val) {
 			unset($_GET[$key]);
 		}
@@ -1527,7 +1536,7 @@ class DispatcherTest extends CakeTestCase {
  * @param mixed $env
  * @return void
  */
-	function __loadEnvironment($env) {
+	protected function __loadEnvironment($env) {
 		if ($env['reload']) {
 			$this->__reloadEnvironment();
 		}
@@ -1561,7 +1570,7 @@ class DispatcherTest extends CakeTestCase {
  * @param mixed $her
  * @return string
  */
-	function __cachePath($here) {
+	protected function __cachePath($here) {
 		$path = $here;
 		if ($here == '/') {
 			$path = 'home';

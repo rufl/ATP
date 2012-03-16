@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Network.Email
  * @since         CakePHP(tm) v 2.0.0
@@ -110,7 +110,7 @@ class CakeEmailTest extends CakeTestCase {
 		$this->CakeEmail = new TestCakeEmail();
 
 		App::build(array(
-			'views' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'View'. DS)
+			'View' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'View'. DS)
 		));
 	}
 
@@ -277,6 +277,14 @@ class CakeEmailTest extends CakeTestCase {
 		$expected = array('CakePHP <cake@cakephp.org>', 'Cake <php@cakephp.org>');
 		$this->assertSame($expected, $result);
 
+		$result = $this->CakeEmail->formatAddress(array('me@example.com' => 'Last, First'));
+		$expected = array('"Last, First" <me@example.com>');
+		$this->assertSame($expected, $result);
+
+		$result = $this->CakeEmail->formatAddress(array('me@example.com' => 'Last First'));
+		$expected = array('Last First <me@example.com>');
+		$this->assertSame($expected, $result);
+
 		$result = $this->CakeEmail->formatAddress(array('cake@cakephp.org' => 'ÄÖÜTest'));
 		$expected = array('=?UTF-8?B?w4TDlsOcVGVzdA==?= <cake@cakephp.org>');
 		$this->assertSame($expected, $result);
@@ -387,6 +395,8 @@ class CakeEmailTest extends CakeTestCase {
 		$this->CakeEmail->subject('You have a new message.');
 		$this->assertSame($this->CakeEmail->subject(), 'You have a new message.');
 
+		$this->CakeEmail->subject('You have a new message, I think.');
+		$this->assertSame($this->CakeEmail->subject(), 'You have a new message, I think.');
 		$this->CakeEmail->subject(1);
 		$this->assertSame($this->CakeEmail->subject(), '1');
 
@@ -1026,7 +1036,7 @@ class CakeEmailTest extends CakeTestCase {
  */
 	public function testSendRenderPlugin() {
 		App::build(array(
-			'plugins' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
+			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
 		));
 		CakePlugin::load('TestPlugin');
 

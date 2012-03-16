@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.Controller
  * @since         CakePHP(tm) v 1.2.0.5436
@@ -76,6 +76,7 @@ class ScaffoldMockControllerWithFields extends Controller {
 		$this->set('scaffoldFields', array('title'));
 		return true;
 	}
+
 }
 
 /**
@@ -90,7 +91,7 @@ class TestScaffoldMock extends Scaffold {
  *
  * @param unknown_type $params
  */
-	function _scaffold(CakeRequest $request) {
+	protected function _scaffold(CakeRequest $request) {
 		$this->_params = $request;
 	}
 
@@ -99,9 +100,10 @@ class TestScaffoldMock extends Scaffold {
  *
  * @return unknown
  */
-	function getParams() {
+	public function getParams() {
 		return $this->_params;
 	}
+
 }
 
 /**
@@ -277,7 +279,7 @@ class ScaffoldTest extends CakeTestCase {
  *
  * @return void
  */
-	function testHabtmFieldAdditionWithScaffoldForm() {
+	public function testHabtmFieldAdditionWithScaffoldForm() {
 		CakePlugin::unload();
 		$params = array(
 			'plugin' => null,
@@ -344,4 +346,5 @@ class ScaffoldTest extends CakeTestCase {
 
 		$this->assertNotRegExp('/textarea name="data\[ScaffoldMock\]\[body\]" cols="30" rows="6" id="ScaffoldMockBody"/', $result);
 	}
+
 }

@@ -5,12 +5,12 @@
  * PHP 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       Cake.Test.Case.TestSuite
  * @since         CakePHP(tm) v 1.2.0.4667
@@ -400,7 +400,7 @@ class CakeTestFixtureTest extends CakeTestCase {
 		$Fixture = new CakeTestFixtureTestFixture();
 		$this->criticDb->expects($this->atLeastOnce())
 			->method('insertMulti')
-			->will($this->returnCallback(array($this, '_insertCallback')));
+			->will($this->returnCallback(array($this, 'insertCallback')));
 
 		$return = $Fixture->insert($this->criticDb);
 		$this->assertTrue(!empty($this->insertMulti));
@@ -424,7 +424,7 @@ class CakeTestFixtureTest extends CakeTestCase {
  * @param string $values
  * @return boolean true
  */
-	function _insertCallback($table, $fields, $values) {
+	public function insertCallback($table, $fields, $values) {
 		$this->insertMulti['table'] = $table;
 		$this->insertMulti['fields'] = $fields;
 		$this->insertMulti['values'] = $values;
@@ -440,7 +440,7 @@ class CakeTestFixtureTest extends CakeTestCase {
 		$Fixture = new StringsTestFixture();
 		$this->criticDb->expects($this->atLeastOnce())
 			->method('insertMulti')
-			->will($this->returnCallback(array($this, '_insertCallback')));
+			->will($this->returnCallback(array($this, 'insertCallback')));
 
 		$return = $Fixture->insert($this->criticDb);
 		$this->assertTrue($this->criticDb->fullDebug);
