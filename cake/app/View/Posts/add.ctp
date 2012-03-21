@@ -1,23 +1,12 @@
-</head>
 <!-- File: /app/View/Posts/add.ctp -->
+</head>
 <body>
-<!-- Dropdown Event Type End -->
-<script type="text/javascript" language="javascript">
-var $dropdown_type= $('#PostType'),
-    $img_upload= $('#PostFileName');
-$dropdown_type.change(function() {
-    if ($dropdown_type.val() == 'Galeria') {
-        $img_upload.removeAttr('disabled');
-    } else {
-        $img_upload.attr('disabled', 'disabled').val('');
-    }
-}).trigger('change'); // added trigger to calculate initial state​​​​​​​​​​
-
-</script>
-<!-- Dropdown Event Type End -->
-
+<!-- Top Menu -->
+<div id="header">
+    <?php echo $this->Session->flash(); ?>
+    <div id="menu"></div>
+</div>
 <!-- Date Picker Format Begin -->
-
 <script type="text/javascript" language="javascript">
 $(document).ready(function() {
    $( "input.datepicker" ).dp({
@@ -26,13 +15,20 @@ $(document).ready(function() {
    }); 
 });
 </script>
-
 <!-- Date Picker Format End -->
-
-<h2>Novo Evento</h2>
+<script type="text/javascript" language="javascript">
+// Create the event trigger, in this case when a link with the class CLOSE inside the overlayer div is clicked 
+$('#overlayer a.close').live('click', function () {
+    // Fade out the overlayer
+    $('#overlayer').fadeOut(400);
+    $('#overlayer').fadeOut(400);
+    return false;
+}); 
+</script>
+<h3>Novo Evento</h3>
 <?php
     echo $this->Form2->create('Post', array('type' => 'file'));
-    echo $this->TinyMCE->editor(array('theme' => 'advanced', 'mode' => 'textareas'));  	
+    echo $this->TinyMCE->editor(array('theme' => 'advanced', 'mode' => 'textareas'));
     echo $this->Form2->input('type', array('label' => 'Tipo'));       
     echo $this->Form2->input('title', array('label' => 'Evento', 'value' => ''));
     echo $this->Form2->input('body', array('label' => 'Descritivo', 'value' => ''));
@@ -40,6 +36,16 @@ $(document).ready(function() {
     echo $this->Form2->input('date_event', array('label' => 'Data do Evento', 'class'=>'datepicker', 'type'=>'text'));
   	echo $this->Form2->input('id', array('type' => 'hidden'));
     echo $this->Form2->end('Salvar Evento');
+?>
+      <div class="divButton">
+        <a href="#close" class="close error-message">Fechar</a>
+      </div>
+<!-- Footer -->
+<br>
+<div id="footer"></div>
+<!-- SQL Dump -->
+<?php 
+//echo $this->element('sql_dump'); 
 ?>
 </body>
 </html>

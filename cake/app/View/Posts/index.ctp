@@ -21,7 +21,6 @@ require 'connect.php';
     document.addEventListener('DOMContentLoaded', loaded, false);
     </script>
     <!-- IScroll Ends -->
-
 </head>
 <body>
     <!-- <div id="background">
@@ -62,17 +61,31 @@ require 'connect.php';
                     foreach($array as $event)
                     {
                         // Loop through the events in the current year:
+                        echo '
+                        <li class="'.$event['type'].'">
                         
-                        echo '<li class="'.$event['type'].'">
                         <span class="icon" title="'.ucfirst($event['type']).'"></span>
+                        
                         '.htmlspecialchars($event['title']).'
                         
                         <div class="content">
-                            <div class="body">'.($event['type']=='image'?'<div style="text-align:center"><img src="'.$event['body'].'" alt="Image" /></div>':nl2br($event['body'])).'</div>
-                            <div class="title">'.htmlspecialchars($event['title']).'</div>
-                            <div class="date">'.date("F j, Y",strtotime($event['date_event'])).'</div>
-                        </div>
+
+                            <div class="body">
+                            '.($event['type']=='image'?'
+                                <div style="text-align:center">
+                                    <img src="'.$event['body'].'" alt="Image" /></div>
+                            ':nl2br($event['body'])).'
+                            </div>
+                    
+                            <div class="title">
+                            '.htmlspecialchars($event['title']).'
+                            </div>
+                              
+                            <div class="date">
+                            '.date("F j, Y",strtotime($event['date_event'])).'
+                            </div>                            
                         
+                        </div>
                         </li>';
                     }
                     

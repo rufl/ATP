@@ -1199,7 +1199,7 @@ class ControllerTest extends CakeTestCase {
 		$Controller->shutdownProcess();
 	}
 
-/**
+/**
  * Tests that the shutdown process calls the correct functions
  *
  * @return void
