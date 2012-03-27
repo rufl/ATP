@@ -1,4 +1,4 @@
-<!-- File: /app/View/Posts/edit.ctp -->
+<!-- File: /app/View/Posts/mediabrowser.ctp -->
 </head>
 <body>
 <!-- Top Menu -->
@@ -25,31 +25,26 @@ $('#overlayer a.close').live('click', function () {
     return false;
 }); 
 </script>
-<h3>Editando Evento</h3>
+<h3>Alterar Imagem</h3>
 <?php
     echo $this->Form2->create('Post', array('type' => 'file'));
-    echo $this->TinyMCE->editor(array('theme' => 'advanced', 'mode' => 'textareas'));  
-    echo $this->Form2->input('type', array('label' => 'Tipo'));   
-    echo $this->Form2->input('title', array('label' => 'Evento'));
-    echo $this->Form2->input('body', array('label' => 'Descritivo'));
     echo $this->Form2->input('image_path', array('label' => 'Imagem do Evento'));
-    echo $this->Form2->input('date_event', array('label' => 'Data do Evento', 'class'=>'datepicker', 'type'=>'text'));
+    echo $this->Form2->input('fileName', array('type' => 'file', 'label' => 'Alterar Imagem', 'class'=>'btn btn-small btn-info'));
     echo $this->Form2->input('id', array('type' => 'hidden'));
-    echo $this->Form2->end('Salvar Evento', array('class'=>'btn btn-small btn-info'));
+    echo $this->Form2->end('Alterar Imagem', array('class'=>'btn btn-mini btn-small'));
 ?>
       <div class="thumbPreview"> 
           <img src="<?php echo $post['Post']['thumb_path']?>"></a>
       </div>
 
-      <div style="font-size: 17px;" class="divButton delete btn btn-small btn-info">
-        <i class="icon-pencil icon-large"></i>
-          <?php echo $this->Html->link('Alterar Imagem', array('action' => 'mediabrowser', $current_id), array('class'=>'js-ajax')); ?>
-      </div>
-
       <div style="font-size: 17px;" class="divButton delete btn btn-small btn-danger">
-      <a href="#close" class="close"><i class="icon-remove-sign icon-large"></i></a>
+        <i class="icon-trash icon-large"></i> 
+        <?php echo $this->Html->link('Deletar', array('action' => 'mediadelete', $current_id), array('class'=>'js-ajax')); ?>
       </div>
 
+      <div class="divButton">
+        <a href="#close" class="close error-message">Fechar</a>
+      </div>
 <!-- Footer -->
 <br>
 <div id="footer"></div>
@@ -57,7 +52,6 @@ $('#overlayer a.close').live('click', function () {
 <?php 
 //echo $this->element('sql_dump');
 //echo debug($this);
-//echo $current_id;
 ?>
 </body>
 </html>

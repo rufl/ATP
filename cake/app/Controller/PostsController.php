@@ -26,12 +26,14 @@ class PostsController extends AppController {
         }
         if ($this->Post->delete($id)) {
             $this->Session->setFlash('O evento id: ' . $id . ' foi removido.');
-            $this->redirect(array('action' => 'index'));
+            $this->redirect(array('action' => 'admin'));
         }
     }
 
     function edit($id = null) {
         $this->Post->id = $id;
+        $this->set('current_id',$this->Post->id); //added - link to mediabrowser
+        $this->set('post', $this->Post->read()); //added - image preview - mediabrowser
         if ($this->request->is('get')) {
             $this->request->data = $this->Post->read();
         } else {
@@ -44,8 +46,46 @@ class PostsController extends AppController {
         }
     }
 
+    function mediabrowser($id = null) {
+        $this->Post->id = $id;
+        $this->set('current_id',$this->Post->id); //added - link to mediabrowser
+        $this->set('post', $this->Post->read()); //added - image preview - mediabrowser
+        $this->Post->read(null,$id);
+        if ($this->request->is('get')) {
+            $this->request->data = $this->Post->read();
+        } else {
+            if ($this->Post->save($this->request->data)) {
+                $this->Session->setFlash('Imagens alteradas com sucesso.');
+                $this->redirect(array('action' => 'admin'));
+            } else {
+                $this->Session->setFlash('Não foi possível atualizar o evento.');
+            }
+        }
+    }    
+
+    function mediadelete($id = null) {
+        $Post = $this->Post->findById($id); 
+        $this->Post->id = $id;
+        $this->set('file1',$this->Post->image_path);
+        $this->set('file2',$this->Post->thumb_path);
+        $this->set('current_id',$this->Post->id);
+        $file1 = $this->Post->image_path;
+        $file2 = $this->Post->thumb_path;
+        $this->set('current_id',$this->Post->id); //added - link to mediabrowser
+        $this->set('post', $this->Post->read()); //added - image preview - mediabrowser   
+        $this->Post->read(null,$id);
+        $this->Post->set('image_path', '');
+        $this->Post->set('thumb_path', '');
+        $this->Post->set('file1', '');
+        $this->Post->set('file2', '');
+        $this->Post->save();
+        $this->Session->setFlash('A imagem do evento id: ' . $id . ' foi removida.');
+        $this->redirect(array('action' => 'mediabrowser'));
+    }    
+
     public function view($id) {
         $this->Post->id = $id;
+        $this->set('current_id',$this->Post->id);
         $this->set('post', $this->Post->read());
 
     }
@@ -71,6 +111,6 @@ class PostsController extends AppController {
      * @param array $file   - The $_FILES data
      * @return string
      */
-    function formatFileName($name, $field, $file) {
-        return md5($name);
+     function formatFileName($name, $field, $file) {
+     return md5($name);
     }

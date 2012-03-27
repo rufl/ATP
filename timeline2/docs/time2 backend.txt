@@ -6,12 +6,11 @@ Frontend
     - http://flowplayer.org/tools/index.html
     - http://manos.malihu.gr/tuts/jquery_custom_scrollbar.html
 
-  > Grid
-
-  > JQuery Graph Lib/Plugin
-
 --- Todo
 * Layout Frontend (Demo)
+* Image Upload
+* Validação
+* Autenticação
 
 --- WIP
 * Layout Backend (CakePHP)
@@ -22,7 +21,7 @@ Frontend
 * JS - Limpar Textarea via Reset. <DONE>
 * Setas Picker <DONE>
 * Hide / Show - Campo Imagem <DONE>
-http://jsfiddle.net/gnarf/GpmSs/2/
+- http://jsfiddle.net/gnarf/GpmSs/2/
 
 
 Backend
@@ -32,6 +31,8 @@ Backend
   - Campo - [title] - Título - (max 255 chars).
   - Campo - [body] - Texto/Imagem - (textarea[html editor]+[image upload]).
   - Campo - [date_event] - Data - [date picker] - ().
+  - Campo - [image_path] - Caminho do upload da imagem.
+  - Campo - [thumb_path] - Caminho do upload da thumb gerada.
   - Campo - [created] - Criado.
   - Campo - [modified] - Modificado.
   - Botão - [Publicar]
@@ -57,73 +58,125 @@ Backend - Fase 1 - Teste/Levantamento de Componentes JQuery + Template -
     - http://flowplayer.org/tools/validator/index.html <CANCELED>
 
   > Autenticação básica
-    http://www.fmajakovskij.info/simple-php-authentication-class/ <CANCELED>
+    - http://www.fmajakovskij.info/simple-php-authentication-class/ <CANCELED>
+
 
 
 Backend - Fase 2 - Instalação CakePHP + Componentes
 
---- WIP
-  > Slider - Upload de imagem (Bootstrap)
-    Ativa desativa campo de upload. [Desativado por Padrão]
+  > JQuery UI - 
+  http://jqueryui.com/ <DONE>
 
-----------------------------------------------------------------    
+  > UI/Form Frameworks - Bootstrap
+    - http://twitter.github.com/bootstrap <DONE> 
 
---- Todo
-  > Image Upload + Crop - 
-
-  > UI - CSS / Bootstrap Dialogs
-    *** Flash Messages
-    *** Menus
-    *** Grid + Sort - Eventos
-
-  > Validation - 
-  > Autentication (ACL) -
-  > Admin Panel -
-
-----------------------------------------------------------------
-
---- Done
-  > UI/Form Frameworks - 
-    *** JQuery UI - 
-    http://jqueryui.com/ <DONE>
-    *** Bootstrap
-    - http://twitter.github.com/bootstrap/ <DONE> 
-  > CakePHP Bootstrappifier
-    - https://github.com/mtkocak/Cakephp-Bootstrappifier <DONE>   
-
-  > Date Picker - JQuery UI - <DONE>
-    - http://jqueryui.com/
-
-  > Hide / Show - Campo Imagem <DONE>
-    - http://jsfiddle.net/gnarf/GpmSs/2/
-
+  > Integration Bootstrap + CakePHP - Bootstrappifier
+    - https://github.com/mtkocak/Cakephp-Bootstrappifier <DONE>
+ 
   > Enum Fields to Select Boxes -   
-    http://bakery.cakephp.org/articles/christian.kilb/2010/09/09/form-helper-enum-fields-to-select-boxes <DONE>
+    - http://bakery.cakephp.org/articles/christian.kilb/2010/09/09/form-helper-enum-fields-to-select-boxes <DONE>
 
   > Richtext Editor - TinyMCE
-    http://cakedc.com/eng/downloads/view/tinymce <DONE>
+    - http://cakedc.com/eng/downloads/view/tinymce <DONE>
      *** Configure - Toolbars / Formatting Buttons - [B], [S], [color], [remove] <DONE>
-     *** FIX - Slow Loading. (Virtualbox) <DONE>
+  
      *** Skin - TheBigReason
      http://thebigreason.com/blog/2008/09/29/thebigreason-tinymce-skin <CANCELED>
+
      *** Skin - Cirkuit
-     http://www.cirkuit.net/projects/tinymce/cirkuitSkin/ <DONE>     
+     http://www.cirkuit.net/projects/tinymce/cirkuitSkin <DONE>     
+     
      *** Configure Plugins - fullscreen,autolink,inlinepopups,preview,advlist <DONE>
+     
      *** Fix CSS border/Decoration - TinyMCE - Border Radius <DONE>
+          
+  > Slider - Upload de imagem (Bootstrap) <CANCELED>
+    Ativa desativa campo de upload. [Desativado por Padrão] <CANCELED>
+  
+  > Image Upload + Thumbs - Uploader 
+  http://milesj.me/code/cakephp/Uploader <DONE>
+      *** Ajax Uploader Frontend!
+
+  > Backend - Event Listing - DataGrid/Sort/Search
+  http://www.datatables.net  <DONE>
+      *** Translate Dialogs! <DONE>
+
+  > Backend - Event Edit - Media Browser
+      *** Views Edit e Add - Media
+      *** Exibir campo [image_path] como campo input <DONE>
+          e disparar Media Browser do ícone [Alterar]. <DONE>
+      *** Criar MVC - mediabrowser.ctp <DONE>
+      *** Delete - Zerar campos do DB [image_path] e[thumb_path]
+      http://stackoverflow.com/questions/5202333/cakephp-update-field <DONE>
+    
+  > Date Picker - JQuery UI - <DONE>
+    - http://jqueryui.com
+    *** Translate!
+    *** FIX: NaN-NaN-NaN in Datepicker (IE9 Only)
+  
+  > UI (Bootstrap/CakePHP) -
+      *** Flash Messages <DONE>
+        *** Fade after 3 sec.
+      *** Toolbars/Menus
+      *** Galleries
+
+  > Hide / Show - Image Field
+  - http://jsfiddle.net/GpmSs/48/
+
+  > Modals - (JQuery UI / CSS3)
+   - http://bakery.cakephp.org/articles/proloser/2009/07/08/serving-up-actions-as-ajax-with-jquery-in-a-few-simple-steps
+      *** Call Views [add.ctp edit.ctp, mediabrowser.ctp] as Modals and pass values to DB via AJAX Modal <DONE>
+        *** FIX - TinyMCE not working in hidden <DIV> (Modal). <DONE>
+        *** FIX - Mediabrowser not opening same record - <DONE>
+        http://stackoverflow.com/questions/3161730/how-can-i-get-record-id-on-edit-view-layout
+        *** FIX - CSS Crossbrowser
+          *** IE9 - No Background <DONE>
+          *** Firefox - Clipping Height - Input Texts
+        *** Close Button - Edit / Add / Preview
+        *** Overlay Click to close.
+
+      *** Preview
+          *** Replicate CSS/Code from index.
       
+      *** Change JS Dialogs to Bootstrap Modals        
+
+----------------------------------------------------------------
+    Cleanup  
+
+  > Minify JS/CSS
+  > Reduce/Unify JS
+  > Reduce/Unify CSS
+  > Bootstrap vs Datagrid CSS Conflicts
+
+  > Tune-up/preload Date Picker CSS <DONE>
+  > Integrate Backend + Frontend in Cake - Create User View <DONE>
+  > Upgrade Centos 6.2    <DONE>
+  > Upgrade CakePHP 2.1.0 <DONE>
+  > FIX - Slow Loading. (Virtualbox) <DONE>
+  > Migrate - Turnkey Lamp Stack + VMWare Player <DONE>
+  > Fix Chars <DONE>
+----------------------------------------------------------------
+    Userland
+
+  > Validation - ()
+  *** Missing validation - Field [date_event]
+
+  > Autentication (ACL) -
+
+----------------------------------------------------------------
 Extras
   
   Themes
   http://jqueryui.com/themeroller
 
   Framework PHP - CakePHP
-  http://www.sitepoint.com/application-development-cakephp/
+  http://www.sitepoint.com/application-development-cakephp
   
   Demos 9Lessons
-  http://demos.9lessons.info/
+  http://demos.9lessons.info
   
   JSFiddle
-  http://jsfiddle.net/
+  http://jsfiddle.net
 
   TinyMCE Fiddle
   http://fiddle.tinymce.com
@@ -135,19 +188,84 @@ Extras
   http://www.tinymce.com/wiki.php/Configuration:plugins
 
   Crunch - LESS Editor
-  http://crunchapp.net/
+  http://crunchapp.net
 
-  JQueryUI Slider Checkbox
-  http://widowmaker.kiev.ua/checkbox/
+  Multimidia Timeline
+  http://www.tiki-toki.com
 
-  Blueprint CSS Framework
-  http://www.blueprintcss.org/
+  Timeglider (Zooming + Panning Timeline)
+  http://timeglider.com
 
-  CakePHP Packages
-  http://cakepackages.com/packages
+  Simple HTML Slides
+  http://richard.milewski.org/shs
 
-  CakePHP Bootstrap Helper - (Bootstrap v1.4)
-  https://github.com/loadsys/twitter-bootstrap-helper
+  HTML5 Slides
+  http://paulrouget.com/dzslides
 
-  Bootstrap Fork - Radio Toggle
-  https://github.com/lvivier/bootstrap/tree/radiotoggle
+  Parallax Timeline
+  http://timeline.lshtm.ac.uk
+
+  Zooming Gallery
+  http://hacks.philingrey.com/2011/03/zooming-good-gallery
+
+  Frontend Prototype - Zooming on elements
+  http://janne.aukia.com/zoomooz
+
+  Thin - Ruby Lightweight Server
+  http://code.macournoyer.com/thin/
+
+  Radioactive Buttons
+  http://www.zurb.com/playground/radioactive-buttons
+
+  Navbar
+  http://woork.blogspot.com.br/2009/09/how-to-implement-perfect-multi-level.html
+
+  CSS3 Please - Showcase CSS3
+  http://css3please.com/
+
+  Mobile UI Framework
+  http://www.jqtouch.com/
+
+  Webfonts
+  http://hellohappy.org/beautiful-web-type/
+  http://nicewebtype.com/notes/2009/10/30/how-to-use-css-font-face/
+  http://www.960development.com/how-to-write-cross-browser-font-face-syntax/
+  http://www.fontsquirrel.com/fontface/generator
+  http://fortawesome.github.com/Font-Awesome/#
+  
+  Glyph Fonts
+  http://fortawesome.github.com/Font-Awesome
+  http://www.heydonworks.com/a-free-icon-web-font
+
+  Glyph Icons
+  http://glyphicons.com/
+
+  CSS Sprite Generator
+  http://spritegen.website-performance.org/
+
+  ----
+  Ideas
+
+  [CSS Tuning]
+  > Less
+  http://lesscss.org/
+
+  > Cross Browser CSS Reset Framework - 
+  http://blog.navayan.com/cross-browser-reset-css-framework/
+  
+  > PrefixFree (no CSS Vendor prefixes)
+  http://leaverou.github.com/prefixfree/
+
+  > Edit/Add/Preview Modals - New/Edit/Delete Button
+
+  Font Awesome
+  http://fortawesome.github.com/Font-Awesome/#
+
+  [Frontend UI]
+  > CSS Frontend Menu - 
+  http://flicktaste.miitla.com/iframe/55
+
+  > UI 
+  Framework - KendoUI
+  Datepicker, Editor, Grid, Menu
+  http://www.kendoui.com  

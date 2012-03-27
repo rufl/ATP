@@ -1,10 +1,8 @@
 </head>
-<!-- File: /app/View/Posts/add.ctp -->
+<!-- File: /app/View/Posts/admin.ctp -->
 <body>
 <!-- DataTables Begin -->
 <?php
-echo $this->Html->css('libs/demo_page');
-echo $this->Html->css('libs/demo_table_jui');
 echo $this->Html->script('libs/jquery.dataTables.min.js');
 echo $this->Html->script('libs/datepicker_widget.js');
 ?>
@@ -96,13 +94,18 @@ $('a.js-ajax').live('click', function() {
             <?php echo $post['Post']['modified']; ?>
         </td>
         <td class="center">
-            <?php echo $this->Form->postLink(
-                'Remover',
-                array('action' => 'delete', $post['Post']['id']),
-                array('confirm' => 'Confima a exclusão do evento?'));
-            ?>
-            <?php echo $this->Html->link('Editar', array('action' => 'edit', $post['Post']['id']), array('class'=>'js-ajax')); ?>
-        </td>
+              <div style="font-size: 17px;" class="divButton btn btn-small btn-success">
+                <i class="icon-pencil icon-large"></i>
+                  <?php echo $this->Html->link('Editar', array('action' => 'edit', $post['Post']['id']), array('class'=>'js-ajax')); ?>
+              </div>
+
+              <div style="font-size: 17px;" class="divButton btn btn-small btn-danger">
+                <i class="icon-remove icon-large"></i>
+                  <?php echo $this->Form->postLink('Excluir', array('action' => 'delete', $post['Post']['id']), array('class'=>'', 'confirm' => 'Confima a exclusão do evento?')); ?>
+              </div>
+
+            
+        </td>   
     </tr>
     <?php endforeach; ?>
 </tbody>

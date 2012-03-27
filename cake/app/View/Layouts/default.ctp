@@ -12,14 +12,17 @@ echo $this->fetch('script');
 echo $this->Html->css('atp');
 echo $this->Html->css('libs/theme/smoothness/jquery-ui-1.8.17.custom');
 echo $this->Html->css('libs/bootstrap.min');
+echo $this->Html->css('libs/font-awesome');
 //Common Scripts
 echo $this->Html->script('libs/jquery-1.7.1.min.js');
 echo $this->Html->script('libs/jquery-ui-1.8.18.custom.min.js');
 echo $this->Html->script('libs/jquery.tools-1.2.6.min.js');
+echo $this->Html->script('libs/less-1.3.0.min.js');
 echo $this->Html->script('libs/datepicker_widget.js');
 echo $this->Html->script('libs/tiny_mce/tiny_mce.js', array('inline' => false));
 echo $this->Html->script('libs/cakebootstrap.js');
 echo $this->Html->script('http://static.scripting.com/github/bootstrap2/js/bootstrap-modal.js');
+
 ?>
 <!-- Top Menu -->
 <div id="header">
@@ -32,6 +35,3 @@ echo $this->Html->script('http://static.scripting.com/github/bootstrap2/js/boots
 <!-- Footer -->
 <br>
 <div id="footer"></div>
-<?php 
-//echo $this->element('sql_dump'); 
-?>

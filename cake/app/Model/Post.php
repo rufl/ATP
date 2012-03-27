@@ -26,7 +26,7 @@ class Post extends AppModel {
 			'allowEmpty'	=> true,					// Allow an empty file upload to continue
 			'transforms' => array(						// What transformations to do on images: scale, resize, etc
 				//array('method' => 'scale', 'percent' => .3, 'dbColumn' => 'thumb_path')
-				array('method' => 'resize', 'width' => 400, 'height' => 200, 'dbColumn' => 'thumb_path') // Removes original image and uses this one instead
+				array('method' => 'resize', 'width' => 300, 'height' => 150, 'dbColumn' => 'thumb_path', 'append' => '_th', 'quality' => 50) // Removes original image and uses this one instead
 			),
 			's3'		=> array(),						// Array of Amazon S3 settings
 			'metaColumns'	=> array(					// Mapping of meta data to database fields
@@ -42,5 +42,4 @@ class Post extends AppModel {
 	)
 );
 
-//$this->Uploader = new Uploader(array('tempDir' => TMP));
 }

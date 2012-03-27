@@ -13,13 +13,11 @@ require 'connect.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Timeline 2</title>
 
-<link rel="stylesheet" type="text/css" href="./css/styles.css" />
-
+<link rel="stylesheet" type="text/css" href="./libs/css/styles.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
 <script type="text/javascript" src="http://cdn.jquerytools.org/1.2.6/jquery.tools.min.js"></script>
-
-<script type="text/javascript" src="./js/script.js"></script>
+<script type="text/javascript" src="./libs/js/script.js"></script>
 
 </head>
 
@@ -27,10 +25,9 @@ require 'connect.php';
 <div id="main">
     <div id="timelineLimiter"> <!-- Hides the overflowing timelineScroll div -->
 	    <div id="timelineScroll"> <!-- Contains the timeline and expands to fit -->
-
-		<?php
+        <?php
         //locale PHP
-        setlocale (LC_ALL, 'pt_BR.utf8');
+        //setlocale (LC_ALL, 'pt_BR.utf8');
                               
         // We first select all the events from the database ordered by date:
         
@@ -74,31 +71,11 @@ require 'connect.php';
             }
             
             echo '</ul></div>';
-			
-			// Generate a list of years for the time line scroll bar:
-			$scrollPoints.='<div class="scrollPoints">'.$year.'</div>';
         }
         
         ?>
-	    
         <div class="clear"></div>
-        </div>
-        
-        <div id="scroll"> <!-- The year time line -->
-            <div id="centered"> <!-- Sized by jQuery to fit all the years -->
-	            <div id="highlight"></div> <!-- The light blue highlight shown behind the years -->
-	            <?php echo $scrollPoints ?> <!-- This PHP variable holds the years that have events -->
-                <div class="clear"></div>
-            </div>
-        </div>
-        
-        <div id="slider"> <!-- The slider container -->
-        	<div id="bar"> <!-- The bar that can be dragged -->
-            	<div id="barLeft"></div>  <!-- Left arrow of the bar -->
-                <div id="barRight"></div>  <!-- Right arrow, both are styled with CSS -->
-          </div>
-        </div>
-        
+        </div>        
     </div>
 </div>
 
