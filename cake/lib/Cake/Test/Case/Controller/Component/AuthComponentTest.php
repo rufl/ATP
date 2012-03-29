@@ -1120,7 +1120,7 @@ class AuthComponentTest extends CakeTestCase {
  */
 	public function testLoginWithRequestData() {
 		$this->getMock('FormAuthenticate', array(), array(), 'RequestLoginMockAuthenticate', false);
-		$request = new CakeRequest('users/login', false);
+		$request = new CakeRequest('users/login', false);
 		$user = array('username' => 'mark', 'role' => 'admin');
 
 		$this->Auth->request = $request;

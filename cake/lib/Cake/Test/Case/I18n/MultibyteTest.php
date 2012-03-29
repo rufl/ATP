@@ -5498,7 +5498,7 @@ class MultibyteTest extends CakeTestCase {
 		$find = 'ﻞ';
 		$result = mb_strstr($string, $find, true);
 		$expected = 'ﺱﺲﺳﺴﺵﺶﺷﺸﺹﺺﺻﺼﺽﺾﺿﻀﻁﻂﻃﻄﻅﻆﻇﻈﻉﻊﻋﻌﻍﻎﻏﻐﻑﻒﻓﻔﻕﻖﻗﻘﻙﻚﻛﻜﻝ';
-		$this->assertEquals($expected, $result);
+		$this->assertEquals($expected, $result);
 
 		$string = 'ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ';
 		$find = 'ｋ';

@@ -965,7 +965,7 @@ class MysqlTest extends CakeTestCase {
 		$this->Dbo = $this->getMock('Mysql', array('connect', '_execute', 'execute'));
 		$this->startTime = microtime(true);
 		$this->Model = new Article2();
-		$this->_buildRelatedModels($this->Model);
+		$this->_buildRelatedModels($this->Model);
 		$this->_buildRelatedModels($this->Model->Category2);
 		$this->Model->Category2->ChildCat = new Category2();
 		$this->Model->Category2->ParentCat = new Category2();

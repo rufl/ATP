@@ -1,6 +1,7 @@
-</head>
 <!-- File: /app/View/Posts/admin.ctp -->
+</head>
 <body>
+
 <!-- DataTables Begin -->
 <?php
 echo $this->Html->script('libs/jquery.dataTables.min.js');
@@ -33,6 +34,7 @@ $(document).ready(function() {
 });
 </script>
 <!-- DataTables End -->
+
 <!-- Inline CRUD Views + TinyMCE init in Modals Begin -->
 <script type="text/javascript" language="javascript">
 $('a.js-ajax').live('click', function() { 
@@ -58,6 +60,7 @@ $('a.js-ajax').live('click', function() {
 });
 </script>
 <!-- Inline CRUD Views + TinyMCE init in Modals End -->
+
 </head>
 <div id="overlayer">
 </div>
@@ -94,22 +97,25 @@ $('a.js-ajax').live('click', function() {
             <?php echo $post['Post']['modified']; ?>
         </td>
         <td class="center">
-              <div style="font-size: 17px;" class="divButton btn btn-small btn-success">
-                <i class="icon-pencil icon-large"></i>
-                  <?php echo $this->Html->link('Editar', array('action' => 'edit', $post['Post']['id']), array('class'=>'js-ajax')); ?>
+              <div class="divButtonAdminEdit btn btn-small btn-success">
+                  <?php echo $this->Html->link('', array('action' => 'edit', $post['Post']['id']), array('class'=>'js-ajax icon-pencil icon-large', 'style'=>'color: #FFF; font-size:17px; text-decoration:none;')); ?>
               </div>
 
-              <div style="font-size: 17px;" class="divButton btn btn-small btn-danger">
-                <i class="icon-remove icon-large"></i>
-                  <?php echo $this->Form->postLink('Excluir', array('action' => 'delete', $post['Post']['id']), array('class'=>'', 'confirm' => 'Confima a exclusão do evento?')); ?>
-              </div>
-
-            
+              <div class="divButtonAdminDelete btn btn-small btn-danger">
+                  <?php echo $this->Form->postLink('', array('action' => 'delete', $post['Post']['id']), array('class'=>'icon-remove icon-large', 'confirm' => 'Confima a exclusão do evento?', 'style'=>'color: #FFF; font-size:17px; text-decoration:none;')); ?>
+              </div>            
         </td>   
     </tr>
     <?php endforeach; ?>
 </tbody>
 </table>
 </div>
+<div id="footer"></div>
+<!-- SQL Dump -->
+<?php 
+//echo $this->element('sql_dump');
+//echo debug($this);
+//echo $current_id;
+?>
 </body>
 </html>

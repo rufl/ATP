@@ -127,8 +127,10 @@ Backend - Fase 2 - Instalação CakePHP + Componentes
    - http://bakery.cakephp.org/articles/proloser/2009/07/08/serving-up-actions-as-ajax-with-jquery-in-a-few-simple-steps
       *** Call Views [add.ctp edit.ctp, mediabrowser.ctp] as Modals and pass values to DB via AJAX Modal <DONE>
         *** FIX - TinyMCE not working in hidden <DIV> (Modal). <DONE>
-        *** FIX - Mediabrowser not opening same record - <DONE>
-        http://stackoverflow.com/questions/3161730/how-can-i-get-record-id-on-edit-view-layout
+        *** FIX - Mediabrowser not opening same record - 
+        http://stackoverflow.com/questions/3161730/how-can-i-get-record-id-on-edit-view-layout <DONE>
+        *** FIX - Wider Title Field - Bootstrap - 
+        http://stackoverflow.com/questions/9784990/bootstrap-wider-input-field <DONE>
         *** FIX - CSS Crossbrowser
           *** IE9 - No Background <DONE>
           *** Firefox - Clipping Height - Input Texts
@@ -155,6 +157,10 @@ Backend - Fase 2 - Instalação CakePHP + Componentes
   > FIX - Slow Loading. (Virtualbox) <DONE>
   > Migrate - Turnkey Lamp Stack + VMWare Player <DONE>
   > Fix Chars <DONE>
+  > Mediabrowser - Delete Images - Retrieve full path - <DONE>
+    http://stackoverflow.com/questions/6868016/cakephp-retrieve-specific-table-field-in-controller
+    http://xbfish.com/2010/07/09/unlink-in-cakephp/
+  > Mediabrowser - Delete Images - If Null, Flash - no images.
 ----------------------------------------------------------------
     Userland
 
@@ -243,29 +249,44 @@ Extras
   CSS Sprite Generator
   http://spritegen.website-performance.org/
 
+  CSS Framework - Blueprint
+  http://blueprintcss.org/
+
+
   ----
   Ideas
 
   [CSS Tuning]
-  > Less
-  http://lesscss.org/
-
-  > Cross Browser CSS Reset Framework - 
-  http://blog.navayan.com/cross-browser-reset-css-framework/
-  
-  > PrefixFree (no CSS Vendor prefixes)
-  http://leaverou.github.com/prefixfree/
-
-  > Edit/Add/Preview Modals - New/Edit/Delete Button
+  > Less + preboot.less
+  http://lesscss.org/ <DONE>
+  http://markdotto.com/bootstrap/
 
   Font Awesome
-  http://fortawesome.github.com/Font-Awesome/#
+  http://fortawesome.github.com/Font-Awesome/# <DONE>
+
+  > Cross Browser CSS Reset Framework - 
+  http://blog.navayan.com/cross-browser-reset-css-framework/ <DONE>
+  
+  > PrefixFree (no CSS Vendor prefixes)
+  http://leaverou.github.com/prefixfree/ <DONE>
+
+  > Edit/Add/Preview Modals - New/Edit/Delete Button <DONE>  
 
   [Frontend UI]
-  > CSS Frontend Menu - 
+  > CSS Frontend Menu Idea - 
   http://flicktaste.miitla.com/iframe/55
 
   > UI 
   Framework - KendoUI
   Datepicker, Editor, Grid, Menu
   http://www.kendoui.com  
+
+  > Bootstrap CakePHP 2.0 Helper
+  http://blog.loadsys.com/2012/02/14/cakephp-20-and-twitter-bootstrap/ <DONE>
+  https://github.com/loadsys/twitter-bootstrap-helper
+
+  > Jquery UI Bootstrap (Style File Input)
+  http://addyosmani.github.com/jquery-ui-bootstrap/
+
+  > Bootstrap Extended Modals
+  http://bootboxjs.com/

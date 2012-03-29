@@ -25,26 +25,27 @@ $('#overlayer a.close').live('click', function () {
     return false;
 }); 
 </script>
-<h3>Alterar Imagem</h3>
+<div id="divMediaBrowserTitle" class="divMediaBrowserTitle"><h3>Alterar Imagem</h3></div>
 <?php
     echo $this->Form2->create('Post', array('type' => 'file'));
-    echo $this->Form2->input('image_path', array('label' => 'Imagem do Evento'));
-    echo $this->Form2->input('fileName', array('type' => 'file', 'label' => 'Alterar Imagem', 'class'=>'btn btn-small btn-info'));
+    echo $this->Form2->input('image_path', array('label' => 'Imagem do Evento', 'div' => array('class' => 'divMediaBrowserImagePath')));
+    echo $this->Form2->input('fileName', array('type' => 'file', 'label' => '', 'class' => 'divMediaBrowserUpload'));
     echo $this->Form2->input('id', array('type' => 'hidden'));
-    echo $this->Form2->end('Alterar Imagem', array('class'=>'btn btn-mini btn-small'));
+    echo $this->TwitterBootstrap->button("Alterar", array("style" => "primary", "size" => "medium", "class" => "fieldMediaBrowserSubmit"));
+    
 ?>
-      <div class="thumbPreview"> 
-          <img src="<?php echo $post['Post']['thumb_path']?>"></a>
+      <div id ="divMediaPreview" class="divMediaPreview"> 
+          <img src="<?php echo $post['Post']['preview_path']?>"></a>
       </div>
 
-      <div style="font-size: 17px;" class="divButton delete btn btn-small btn-danger">
-        <i class="icon-trash icon-large"></i> 
-        <?php echo $this->Html->link('Deletar', array('action' => 'mediadelete', $current_id), array('class'=>'js-ajax')); ?>
+      <div id="divButtonMediaDelete" class="divButtonMediaDelete btn btn-small btn-danger">
+        <?php echo $this->Html->link('', array('action' => 'mediadelete', $current_id), array('class'=>'js-ajax icon-trash icon-large', 'style'=>'color: #FFF; font-size:17px; text-decoration:none;')); ?>
       </div>
 
-      <div class="divButton">
-        <a href="#close" class="close error-message">Fechar</a>
+      <div id="divButtonClose" class="divButtonClose">
+      <a href="#close" class="close buttonText"><i class="icon-remove icon-large"></i></a>
       </div>
+
 <!-- Footer -->
 <br>
 <div id="footer"></div>

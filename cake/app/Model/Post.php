@@ -25,9 +25,9 @@ class Post extends AppModel {
 			'stopSave'	=> true,						// Stop the model save() if upload fails
 			'allowEmpty'	=> true,					// Allow an empty file upload to continue
 			'transforms' => array(						// What transformations to do on images: scale, resize, etc
-				//array('method' => 'scale', 'percent' => .3, 'dbColumn' => 'thumb_path')
-				array('method' => 'resize', 'width' => 300, 'height' => 150, 'dbColumn' => 'thumb_path', 'append' => '_th', 'quality' => 50) // Removes original image and uses this one instead
-			),
+							array('method' => 'resize', 'width' => 150, 'height' => 150, 'dbColumn' => 'thumb_path', 'append' => '_th', 'quality' => 80), // Removes original image and uses this one instead
+							array('method' => 'resize', 'width' => 500, 'height' => 500, 'dbColumn' => 'preview_path', 'append' => '_pr', 'quality' => 80) // Removes original image and uses this one instead
+							),
 			's3'		=> array(),						// Array of Amazon S3 settings
 			'metaColumns'	=> array(					// Mapping of meta data to database fields
 				'ext' => '',

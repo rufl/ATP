@@ -30,21 +30,24 @@ $('#overlayer a.close').live('click', function () {
 </script>
 <!-- Modal Controls End -->
 
-<div id="divEditTitle" class="divEditTitle"><h3>Editando Evento</h3></div>
-
+<h3>Editando Evento</h3>
 <?php
     echo $this->Form2->create('Post', array('type' => 'file'));
-    echo $this->TinyMCE->editor(array('theme' => 'advanced', 'mode' => 'textareas'));  
-    echo $this->TwitterBootstrap->input(array("field" => "", "input" => $this->Form2->input('title', array('label' => 'Evento', 'class'=> 'input-title', 'div' => array('class' => 'fieldEditEvento')))));
-    echo $this->Form2->input('type', array('label' => 'Tipo','div' => array('class' => 'fieldEditTipo')));
-    echo $this->Form2->input('body', array('label' => 'Descritivo','div' => array('class' => 'fieldEditDescritivo')));
-    echo $this->Form2->input('image_path', array('label' => 'Imagem do Evento','div' => array('class' => 'fieldEditImagePath')));
-    echo $this->Form2->input('date_event', array('label' => 'Data do Evento', 'class'=>'datepicker', 'type'=>'text', 'div' => array('class' => 'fieldEditData')));
+    echo $this->TinyMCE->editor(array('theme' => 'advanced', 'mode' => 'textareas')); ?>
+    <div id="upperEditFields">
+<?php      
+    echo $this->Form2->input('title', array('label' => 'Evento'));
+    echo $this->Form2->input('type', array('label' => 'Tipo'));?>
+    </div>
+<?php 
+    echo $this->Form2->input('body', array('label' => 'Descritivo'));
+    echo $this->Form2->input('image_path', array('label' => 'Imagem do Evento'));
+    echo $this->Form2->input('date_event', array('label' => 'Data do Evento', 'class'=>'formDate datepicker', 'type'=>'text'));
     echo $this->Form2->input('id', array('type' => 'hidden'));
-    echo $this->TwitterBootstrap->button("Salvar Evento", array("style" => "primary", "size" => "medium", "class" => "fieldEditSubmit"));
+    echo $this->Form2->end('Salvar Evento', array('class'=>'btn btn-small btn-info'));
 ?>
       <div id ="divThumbPreview" class="divThumbPreview">
-      <img src="<?php echo $post['Post']['thumb_path']?>"></a>
+      <img id ="" class="" src="<?php echo $post['Post']['thumb_path']?>"></a>
       </div>
 
       <div id="divButtonMediaBrowser"style="font-size: 17px;" class="divButtonMediaBrowser btn btn-small btn-info">

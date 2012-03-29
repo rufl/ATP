@@ -1,7 +1,7 @@
 <?php
 class PostsController extends AppController {
     public $name = 'Posts';
-    public $helpers = array('Html', 'Form', 'Form2','TinyMCE.TinyMCE');
+    public $helpers = array('Html', 'Form', 'Form2','TinyMCE.TinyMCE', 'TwitterBootstrap.TwitterBootstrap');
     public $components = array('RequestHandler');
     
     public function index() {
@@ -63,25 +63,43 @@ class PostsController extends AppController {
         }
     }    
 
-    function mediadelete($id = null) {
-        $Post = $this->Post->findById($id); 
+    function mediadelete($id = null){
+        $Post = $this->Post->findById($id);
         $this->Post->id = $id;
-        $this->set('file1',$this->Post->image_path);
-        $this->set('file2',$this->Post->thumb_path);
-        $this->set('current_id',$this->Post->id);
-        $file1 = $this->Post->image_path;
-        $file2 = $this->Post->thumb_path;
-        $this->set('current_id',$this->Post->id); //added - link to mediabrowser
-        $this->set('post', $this->Post->read()); //added - image preview - mediabrowser   
-        $this->Post->read(null,$id);
-        $this->Post->set('image_path', '');
-        $this->Post->set('thumb_path', '');
-        $this->Post->set('file1', '');
-        $this->Post->set('file2', '');
+        $this->Post->data = $id;
+        $image_path = $this->Post->field('image_path');
+        $thumb_path = $this->Post->field('thumb_path');
+        $preview_path = $this->Post->field('preview_path');
+        $img_path = new File(WWW_ROOT . $image_path);
+        $thb_path = new File(WWW_ROOT . $thumb_path);
+        $prv_path = new File(WWW_ROOT . $preview_path);
+        $this->set('current_id', $this->Post->id);
+        $this->set('post', $this->Post->read());
+        $this->Post->set('image_path', '');     //Database
+        $this->Post->set('thumb_path', '');     //Database
+        $this->Post->set('preview_path', '');   //Database
+        if($img_path->delete()){
+            $this->Session->setFlash('Imagem do evento id: ' . $id . ' removida.');
+        } else {
+            $this->Session->setFlash('Imagem do evento id: ' . $id . ' removida.');
+        }
+            if($thb_path->delete()){
+                $this->Session->setFlash('Thumb do evento id: ' . $id . ' removida.');
+            } else {
+                $this->Session->setFlash('Thumb do evento id: ' . $id . ' removida.');
+            }
+                if($prv_path->delete()){
+                    $this->Session->setFlash('Preview do evento id: ' . $id . ' removida.');
+                } else {
+                    $this->Session->setFlash('Preview do evento id: ' . $id . ' removida.');
+                }            
+        //unlink('.'. $image_path);               //Filesystem
+        //unlink('.'. $thumb_path);               //Filesystem
+        //unlink('.'. $preview_path);             //Filesystem
         $this->Post->save();
-        $this->Session->setFlash('A imagem do evento id: ' . $id . ' foi removida.');
+        $this->Session->setFlash('Imagem do evento id: ' . $id . ' removida.');
         $this->redirect(array('action' => 'mediabrowser'));
-    }    
+    }     
 
     public function view($id) {
         $this->Post->id = $id;

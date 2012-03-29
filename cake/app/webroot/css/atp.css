@@ -1,124 +1,21 @@
-	/* Simple page reset */
-
-body,h1,h2,h3,p,quote,small,form,ul,li,ol,label{
-	margin:0;
-	padding:0;
-}
-
-	/* Hides Overflow */
-html {overflow:hidden;}
-
-body{
-	/* Setting default text color, background and a font stack */
-	margin:0; 
-	padding:0;
-	background:#FFFFFF;
-	font: 15px;
-	font-family: Calibri, Tahoma, Verdana;
-	font-size: 85%;
-}
-
-a:link,a:visited{
-	color:#000000;
-	text-decoration:none;
-	outline:none;
-}
-
-a:hover{
-	color:#000000;
-	text-decoration:none;
-}
-
-.info{position:absolute; left:20px; top:125px; width:260px; color:#CCC;  font-size:20px; padding:5px;}
-.info .big{font-size:34px;}
-.blue{color:#45BF5B;}
-
-h1{padding:10px 5px; margin:10px 0; color:#000000; font-family:Calibri, Tahoma, Verdana; font-size:15px; font-weight:normal; line-height:34px;}
-h2{font-family:Calibri, Tahoma, Verdana; font-size:36px; font-weight:bold; color:#000000; margin-left:5px;}
-h3{font-family:Calibri, Tahoma, Verdana; font-size:30px; font-weight:bold; color:#000000; margin-left:10px;}
-h4{font-family:Calibri, Tahoma, Verdana; font-size:18px; font-weight:normal; color:#000000; margin:5px 10px;}
-
-div, ul, li {
-    zoom: 0;
-    -webkit-user-select:none;
-    -webkit-text-size-adjust:none;
-/*  -webkit-box-sizing:border-box;*/
-/*  padding-bottom:45px;    /*  This prevents the scroller to lock if the user swipes down outside of the screen.
-                                NOT needed if in home screen mode. */
-    /* CSS3 rounded corners */
-    -moz-border-radius:4px;
-    -webkit-border-radius:4px;
-    border-radius:4px;
-}
-
-	/*Form*/
+/*
+Title: cbresetcss-1.5.3 - Cross-browser Reset CSS Framework
+Author: Amol Nirmala Waman
+URL: http://amolnw.wordpress.com/
+*/
+html,body,div,span,applet,embed,object,iframe,frameset,p,q,blockquote,sub,sup,a,abbr,acronym,font,img,small,center,h1,h2,h3,h4,h5,h6,b,strong,big,u,ins,i,cite,em,var,dfn,address,s,strike,del,dl,dt,dd,ol,ul,li,pre,code,kbd,samp,tt,fieldset,legend,form,label,input,textarea,select,button,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-size:100%;vertical-align:baseline;line-height:inherit;background:transparent;border-collapse:collapse;border-spacing:0;list-style:none}textarea{overflow:auto}button,input{width:auto;overflow:visible}button{border:1px outset #ccc}blockquote,blockquote:before,blockquote:after,q,q:before,q:after{quotes:none}th,b,strong{font-weight:700}i,cite,em,var,dfn,address{font-style:italic}u,ins{text-decoration:underline}s,strike,del{text-decoration:line-through}sub,sup{font-size:smaller;font-weight:400}sup{vertical-align:text-top}sub{vertical-align:text-bottom}abbr,dfn{cursor:help}:focus, a:focus{outline: 0}
 
 
-#overlayer {
-	display:none;
-	position:absolute; 
-	width: 900px; 
-    height: 700px;
-    left:50%;
-	top:50%;
-    margin:-350px 0 0 -450px;
-	padding: 20px 20px 20px 20px;
-	border: solid 1px #999;
-	z-index:25;
-	/* CSS3 extras*/
-   	border-radius:10px;
-   	box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
-   	-moz-border-radius:10px;
-   	-moz-box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
-    -webkit-border-radius:10px;
-    -webkit-box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
-	background-image: linear-gradient(top, #ffffff, #e6e6e6);
-	background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
-	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);	
-	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255,255,255)), to(rgb(230,230,230)));
-	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
-	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
-	background-color: #F5F5F5;
-}
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Frontend
+ */	
 
-#wrapper {
-    position:absolute; z-index:1;
-    top:0; bottom:0; left:0;
-    width:100%;
-    overflow:auto;
-}
+/* Frontend Toolbar */
+#divButtonSettings{}
+#divButtonMonthly{}
+#divButtonYearly{}
 
-#scroller {
-    width:2040px;
-    height:100%;
-    float:left;
-    padding:0;
-}
-
-#timeline {
-    margin-top: 0px;
-    padding: 20px;
-    overflow: auto;
-    /*cursor: -moz-grab !important;*/ /* should this be applied with JS? */
-    border: 0px;
-}
-
-#background {
-    width: 100%; 
-    height: 100%; 
-    position: absolute; 
-    left: 0px; 
-    top: 0px; 
-    z-index: 0;
-}
-
-.stretch {
-    width:100%;
-    height:100%;
-}
-
-
-/* Timeline Styles Begin */
+/* Timeline */
 
 .event{
 	/* Contains the event header and body list */
@@ -272,312 +169,319 @@ div.content{
 	border-radius:4px;
 }
 
-/* Form errors */
-form .error {
-	background: #FFDACC;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-	font-weight: normal;
-}
-form .error-message {
-	-moz-border-radius: none;
-	-webkit-border-radius: none;
-	border-radius: none;
-	border: none;
-	background: none;
-	margin: 0;
-	padding-left: 4px;
-	padding-right: 0;
-}
-form .error,
-form .error-message {
-	color: #9E2424;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	-ms-box-shadow: none;
-	-o-box-shadow: none;
-	box-shadow: none;
-	text-shadow: none;
+	/* Hides Overflow */
+html {overflow:hidden;}
+
+.info{position:absolute; left:20px; top:125px; width:260px; color:#CCC;  font-size:20px; padding:5px;}
+.info .big{font-size:34px;}
+.blue{color:#45BF5B;}
+
+h1{padding:10px 5px; margin:10px 0; color:#000000; font-family:Calibri, Tahoma, Verdana; font-size:15px; font-weight:normal; line-height:34px;}
+h2{font-family:Calibri, Tahoma, Verdana; font-size:36px; font-weight:bold; color:#000000; margin-left:5px;}
+h3{font-family:Calibri, Tahoma, Verdana; font-size:30px; font-weight:bold; color:#000000; margin-left:10px;}
+h4{font-family:Calibri, Tahoma, Verdana; font-size:18px; font-weight:normal; color:#000000; margin:5px 10px;}
+
+div, ul, li {
+    zoom: 0;
+    -webkit-user-select:none;
+    -webkit-text-size-adjust:none;
+/*  -webkit-box-sizing:border-box;*/
+/*  padding-bottom:45px;    /*  This prevents the scroller to lock if the user swipes down outside of the screen.
+                                NOT needed if in home screen mode. */
+    /* CSS3 rounded corners */
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
 }
 
-/** Notices and Errors **/
-.message {
-	clear: both;
-	color: #fff;
-	font-size: 140%;
-	font-weight: bold;
-	margin: 0 0 1em 0;
-	padding: 5px;
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Backend
+ */	
+
+/* Modal Dialogs: */
+
+#overlayer {
+	display:none;
+	position:absolute;
+	width: 780px;
+    height: 710px;
+    left:50%;
+	top:50%;
+    margin:-380px 0 0 -450px;
+	padding: 30px 20px 20px 20px;
+	border: solid 1px #999;
+	z-index:25;
+	/* CSS3 extras*/
+   	border-radius:10px;
+   	box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+   	-moz-border-radius:10px;
+   	-moz-box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+    -webkit-border-radius:10px;
+    -webkit-box-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+	background-image: linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);	
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255,255,255)), to(rgb(230,230,230)));
+	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-color: #F5F5F5;
 }
 
-.success,
-.message,
-.cake-error,
-.cake-debug,
-.notice,
-p.error,
-.error-message {
-	background: #ffcc00;
-	background-repeat: repeat-x;
-	background-image: -moz-linear-gradient(top, #ffcc00, #E6B800);
-	background-image: -ms-linear-gradient(top, #ffcc00, #E6B800);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffcc00), to(#E6B800));
-	background-image: -webkit-linear-gradient(top, #ffcc00, #E6B800);
-	background-image: -o-linear-gradient(top, #ffcc00, #E6B800);
-	background-image: linear-gradient(top, #ffcc00, #E6B800);
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	margin-bottom: 18px;
-	padding: 7px 14px;
-	color: #404040;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-}
-.success,
-.message,
-.cake-error,
-p.error,
-.error-message {
-	clear: both;
-	color: #fff;
-	background: #c43c35;
-	border: 1px solid rgba(0, 0, 0, 0.5);
-	background-repeat: repeat-x;
-	background-image: -moz-linear-gradient(top, #ee5f5b, #c43c35);
-	background-image: -ms-linear-gradient(top, #ee5f5b, #c43c35);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#ee5f5b), to(#c43c35));
-	background-image: -webkit-linear-gradient(top, #ee5f5b, #c43c35);
-	background-image: -o-linear-gradient(top, #ee5f5b, #c43c35);
-	background-image: linear-gradient(top, #ee5f5b, #c43c35);
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
-}
-.success {
-	clear: both;
-	color: #fff;
-	border: 1px solid rgba(0, 0, 0, 0.5);
-	background: #3B8230;
-	background-repeat: repeat-x;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
-	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
-	background-image: -moz-linear-gradient(top, #76BF6B, #3B8230);
-	background-image: -ms-linear-gradient(top, #76BF6B, #3B8230);
-	background-image: -o-linear-gradient(top, #76BF6B, #3B8230);
-	background-image: linear-gradient(top, #76BF6B, #3B8230);
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
-}
-p.error {
-	font-family: Monaco, Consolas, Courier, monospace;
-	font-size: 120%;
-	padding: 0.8em;
-	margin: 1em 0;
-}
-p.error em {
-	font-weight: normal;
-	line-height: 140%;
-}
-.notice {
-	color: #000;
-	display: block;
-	font-size: 120%;
-	padding: 0.8em;
-	margin: 1em 0;
-}
-.success {
-	color: #fff;
+/* Modal Buttons */
+
+/* Close Button - add.ctp, edit.ctp, view.ctp, mediabrowser.ctp */
+
+#divButtonClose {
+	position:relative;
+	text-decoration:none;
+	width: 	17px; 
+    height: 17px;
+    left:	770px;
+	top:	-120px;
+	font-size: 17px;
+	z-index:50;
 }
 
-/** Debugging **/
-pre {
-	color: #000;
-	background: #f0f0f0;
-	padding: 15px;
-	-moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-.cake-debug-output {
-	padding: 0;
-	position: relative;
-}
-.cake-debug-output > span {
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	background: rgba(255, 255, 255, 0.3);
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-	padding: 5px 6px;
-	color: #000;
-	display: block;
-	float: left;
-	-moz-box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.5);
-	-webkit-box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.5);
-	box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.5);
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
-}
-.cake-debug,
-.cake-error {
-	font-size: 16px;
-	line-height: 20px;
-	clear: both;
-}
-.cake-error > a {
-	text-shadow: none;
-}
-.cake-error {
-	white-space: normal;
-}
-.cake-stack-trace {
-	background: rgba(255, 255, 255, 0.7);
-	color: #333;
-	margin: 10px 0 5px 0;
-	padding: 10px 10px 0 10px;
-	font-size: 120%;
-	line-height: 140%;
-	overflow: auto;
-	position: relative;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-}
-.cake-stack-trace a {
-	text-shadow: none;
-	background: rgba(255, 255, 255, 0.7);
-	padding: 5px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	margin: 0px 4px 10px 2px;
-	font-family: sans-serif;
-	font-size: 14px;
-	line-height: 14px;
-	display: inline-block;
-	text-decoration: none;
-	-moz-box-shadow: inset 0px 1px 0 rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: inset 0px 1px 0 rgba(0, 0, 0, 0.3);
-	box-shadow: inset 0px 1px 0 rgba(0, 0, 0, 0.3);
-}
-.cake-code-dump pre {
-	position: relative;
-	overflow: auto;
-}
-.cake-context {
-	margin-bottom: 10px;
-}
-.cake-stack-trace pre {
-	color: #000;
-	background-color: #F0F0F0;
-	margin: 0px 0 10px 0;
-	padding: 1em;
-	overflow: auto;
-	text-shadow: none;
-}
-.cake-stack-trace li {
-	padding: 10px 5px 0px;
-	margin: 0 0 4px 0;
-	font-family: monospace;
-	border: 1px solid #bbb;
-	-moz-border-radius: 4px;
-	-wekbkit-border-radius: 4px;
-	border-radius: 4px;
-	background: #dcdcdc;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#dcdcdc));
-	background-image: -webkit-linear-gradient(top, #fefefe, #dcdcdc);
-	background-image: -moz-linear-gradient(top, #fefefe, #dcdcdc);
-	background-image: -ms-linear-gradient(top, #fefefe, #dcdcdc);
-	background-image: -o-linear-gradient(top, #fefefe, #dcdcdc);
-	background-image: linear-gradient(top, #fefefe, #dcdcdc);
-}
-/* excerpt */
-.cake-code-dump pre,
-.cake-code-dump pre code {
-	clear: both;
-	font-size: 12px;
-	line-height: 15px;
-	margin: 4px 2px;
-	padding: 4px;
-	overflow: auto;
-}
-.cake-code-dump .code-highlight {
-	display: block;
-	background-color: rgba(255, 255, 0, 0.5);
-}
-.code-coverage-results div.code-line {
-	padding-left:5px;
-	display:block;
-	margin-left:10px;
-}
-.code-coverage-results div.uncovered span.content {
-	background:#ecc;
-}
-.code-coverage-results div.covered span.content {
-	background:#cec;
-}
-.code-coverage-results div.ignored span.content {
-	color:#aaa;
-}
-.code-coverage-results span.line-num {
-	color:#666;
-	display:block;
-	float:left;
-	width:20px;
-	text-align:right;
-	margin-right:5px;
-}
-.code-coverage-results span.line-num strong {
-	color:#666;
-}
-.code-coverage-results div.start {
-	border:1px solid #aaa;
-	border-width:1px 1px 0px 1px;
-	margin-top:30px;
-	padding-top:5px;
-}
-.code-coverage-results div.end {
-	border:1px solid #aaa;
-	border-width:0px 1px 1px 1px;
-	margin-bottom:30px;
-	padding-bottom:5px;
-}
-.code-coverage-results div.realstart {
-	margin-top:0px;
-}
-.code-coverage-results p.note {
-	color:#bbb;
-	padding:5px;
-	margin:5px 0 10px;
-	font-size:10px;
-}
-.code-coverage-results span.result-bad {
-	color: #a00;
-}
-.code-coverage-results span.result-ok {
-	color: #fa0;
-}
-.code-coverage-results span.result-good {
-	color: #0a0;
+/* Form add.ctp */
+
+.divAddTitle{
+	position:relative;
+    left:	0px;
+	top:	0px;
 }
 
-/* SQL log */
-.cake-sql-log {
-	background: #fff;
-}
-.cake-sql-log td {
-	padding: 4px 8px;
-	text-align: left;
-	font-family: Monaco, Consolas, "Courier New", monospaced;
-}
-.cake-sql-log caption {
-	color:#fff;
+.fieldAddTipo{
+	position:relative;
+    left:	0px;
+	top:	0px;
 }
 
+.fieldAddEvento {
+	position:relative;
+    left:	0px;
+	top:	0px;
+}
+
+.fieldAddDescritivo {
+	position:relative;
+    left:	0px;
+	top:	0px;
+}
+
+.fieldAddImagePath {	
+	position:relative;
+    left:	0px;
+	top:	0px;
+}
+
+.fieldAddSubmit {
+	position:relative;
+    left:	0px;
+	top:	0px;
+}
+
+/* Form edit.ctp */
+
+.input-title {
+ 	width: 400px; 	
+}
+
+.divEditTitle {
+	position:relative;
+    left:	0px;
+	top:	50px;
+}
+
+.fieldEditEvento {
+	position:relative;
+    left:	0px;
+	top:	55px;
+}
+
+.fieldEditTipo {
+	position:relative;
+    left:	550px;
+	top:	-15px;
+}
+
+.fieldEditDescritivo {
+	position:relative;
+    left:	0px;
+	top:	-10px;
+}
+
+.fieldEditImagePath {
+	position:relative;
+    left:	300px;
+	top:	0px;
+}
+
+.fieldEditData {
+	position:relative;
+    left:	300px;
+	top:	0px;
+}
+
+#divThumbPreview {
+	position:relative;
+	padding: 5px 5px 5px 5px;
+    left: 0px;
+	top: -140px;
+	width: 150px;
+	height: 150px;
+    z-index: 30;
+	border: solid 1px #CCC;
+	/* CSS3 extras*/
+   	border-radius:4px;
+   	-moz-border-radius:4px;
+    -webkit-border-radius:4px;
+	background-image: linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);	
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255,255,255)), to(rgb(230,230,230)));
+	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-color: #F5F5F5;
+}
+
+#divButtonMediaBrowser {
+	position:relative;
+	width: 	20px;
+    height: 20px;
+    left:	530px;
+	top:	-290px;
+    margin: 0px 0px 0px 0px;
+	font-size: 17px;
+	z-index:40;
+}
+
+.fieldEditSubmit {
+	position:relative;
+    left:	670px;
+	top:	20px;
+}
+
+/* Form Media Browser - mediabrowser.ctp */
+
+.divMediaBrowserTitle {
+	position:relative;
+    left:	0px;
+	top:	50px;
+}
+
+.divMediaBrowserImagePath {
+	position:relative;
+    left:	130px;
+	top:	55px;
+}
+
+#divButtonMediaDelete { /* mediabrowser.ctp */
+	position:relative;
+	width: 	20px;
+    height: 20px;
+    left:	230px;
+	top:	-158px;
+    margin: 0px 0px 0px 0px;
+	font-size: 17px;
+	z-index:40;
+}
+
+#divMediaPreview { /* mediabrowser.ctp */
+	position:relative;
+	padding: 5px 5px 5px 5px;
+	width: 	500px;
+    height: 500px;
+    left:	130px;
+	top:	0px;
+	z-index:30;
+	border: solid 1px #CCC;
+	/* CSS3 extras*/
+   	border-radius:4px;
+   	-moz-border-radius:4px;
+    -webkit-border-radius:4px;
+	background-image: linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);	
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255,255,255)), to(rgb(230,230,230)));
+	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-color: #F5F5F5;
+}
+
+.divMediaBrowserUpload{
+	position:relative;
+    left:	470px;
+	top:	20px;
+}
+
+.fieldMediaBrowserSubmit{
+	position:relative;
+    left:	670px;
+	top:	20px;
+}
+
+
+/* Admin Buttons - admin.ctp */
+
+#divButtonAdminNew{
+}
+
+#divButtonAdminEdit{
+}
+
+#divButtonAdminDelete{
+
+}
+
+#wrapper {
+    position:absolute; z-index:1;
+    top:0; bottom:0; left:0;
+    width:100%;
+    overflow:auto;
+}
+
+#scroller {
+    width:2040px;
+    height:100%;
+    float:left;
+    padding:0;
+}
+
+#timeline {
+    margin-top: 0px;
+    padding: 20px;
+    overflow: auto;
+    /*cursor: -moz-grab !important;*/ /* should this be applied with JS? */
+    border: 0px;
+}
+
+#background {
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    left: 0px; 
+    top: 0px; 
+    z-index: 0;
+}
+
+.stretch {
+    width:100%;
+    height:100%;
+}
+
+/* Form Buttons */
+#formDate {
+	position:relative;
+    left:	400px;
+	top:	567px;	
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Backend - Datatables
+ */	
 
 /*
  *  File:         demo_table_jui.css
@@ -672,8 +576,6 @@ table.display thead th div.DataTables_sort_wrapper span {
 	margin-top: -8px;
 	right: 0;
 }
-
-
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -1174,4 +1076,316 @@ tr.even.gradeU td.sorting_3 {
 	height: 100px;
 	width: 80%;
 	overflow: auto;
+}
+
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Backend - CakePHP Form errors
+ */	
+
+form .error {
+	background: #FFDACC;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	font-weight: normal;
+}
+form .error-message {
+	-moz-border-radius: none;
+	-webkit-border-radius: none;
+	border-radius: none;
+	border: none;
+	background: none;
+	margin: 0;
+	padding-left: 4px;
+	padding-right: 0;
+}
+form .error,
+form .error-message {
+	color: #9E2424;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-ms-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
+	text-shadow: none;
+}
+
+/** Notices and Errors **/
+.message {
+	clear: both;
+	color: #fff;
+	font-size: 140%;
+	font-weight: bold;
+	margin: 0 0 1em 0;
+	padding: 5px;
+}
+
+.success,
+.message,
+.cake-error,
+.cake-debug,
+.notice,
+p.error,
+.error-message {
+	background: #ffcc00;
+	background-repeat: repeat-x;
+	background-image: -moz-linear-gradient(top, #ffcc00, #E6B800);
+	background-image: -ms-linear-gradient(top, #ffcc00, #E6B800);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffcc00), to(#E6B800));
+	background-image: -webkit-linear-gradient(top, #ffcc00, #E6B800);
+	background-image: -o-linear-gradient(top, #ffcc00, #E6B800);
+	background-image: linear-gradient(top, #ffcc00, #E6B800);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	margin-bottom: 18px;
+	padding: 7px 14px;
+	color: #404040;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.success,
+.message,
+.cake-error,
+p.error,
+.error-message {
+	clear: both;
+	color: #fff;
+	background: #c43c35;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	background-repeat: repeat-x;
+	background-image: -moz-linear-gradient(top, #ee5f5b, #c43c35);
+	background-image: -ms-linear-gradient(top, #ee5f5b, #c43c35);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ee5f5b), to(#c43c35));
+	background-image: -webkit-linear-gradient(top, #ee5f5b, #c43c35);
+	background-image: -o-linear-gradient(top, #ee5f5b, #c43c35);
+	background-image: linear-gradient(top, #ee5f5b, #c43c35);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+.success {
+	clear: both;
+	color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	background: #3B8230;
+	background-repeat: repeat-x;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
+	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -moz-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -ms-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -o-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: linear-gradient(top, #76BF6B, #3B8230);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+p.error {
+	font-family: Monaco, Consolas, Courier, monospace;
+	font-size: 120%;
+	padding: 0.8em;
+	margin: 1em 0;
+}
+p.error em {
+	font-weight: normal;
+	line-height: 140%;
+}
+.notice {
+	color: #000;
+	display: block;
+	font-size: 120%;
+	padding: 0.8em;
+	margin: 1em 0;
+}
+.success {
+	color: #fff;
+}
+
+/** Debugging **/
+pre {
+	color: #000;
+	background: #f0f0f0;
+	padding: 15px;
+	-moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+.cake-debug-output {
+	padding: 0;
+	position: relative;
+}
+.cake-debug-output > span {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background: rgba(255, 255, 255, 0.3);
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	padding: 5px 6px;
+	color: #000;
+	display: block;
+	float: left;
+	-moz-box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.5);
+	-webkit-box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.5);
+	box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.5);
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+.cake-debug,
+.cake-error {
+	font-size: 16px;
+	line-height: 20px;
+	clear: both;
+}
+.cake-error > a {
+	text-shadow: none;
+}
+.cake-error {
+	white-space: normal;
+}
+.cake-stack-trace {
+	background: rgba(255, 255, 255, 0.7);
+	color: #333;
+	margin: 10px 0 5px 0;
+	padding: 10px 10px 0 10px;
+	font-size: 120%;
+	line-height: 140%;
+	overflow: auto;
+	position: relative;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+.cake-stack-trace a {
+	text-shadow: none;
+	background: rgba(255, 255, 255, 0.7);
+	padding: 5px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	margin: 0px 4px 10px 2px;
+	font-family: sans-serif;
+	font-size: 14px;
+	line-height: 14px;
+	display: inline-block;
+	text-decoration: none;
+	-moz-box-shadow: inset 0px 1px 0 rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: inset 0px 1px 0 rgba(0, 0, 0, 0.3);
+	box-shadow: inset 0px 1px 0 rgba(0, 0, 0, 0.3);
+}
+.cake-code-dump pre {
+	position: relative;
+	overflow: auto;
+}
+.cake-context {
+	margin-bottom: 10px;
+}
+.cake-stack-trace pre {
+	color: #000;
+	background-color: #F0F0F0;
+	margin: 0px 0 10px 0;
+	padding: 1em;
+	overflow: auto;
+	text-shadow: none;
+}
+.cake-stack-trace li {
+	padding: 10px 5px 0px;
+	margin: 0 0 4px 0;
+	font-family: monospace;
+	border: 1px solid #bbb;
+	-moz-border-radius: 4px;
+	-wekbkit-border-radius: 4px;
+	border-radius: 4px;
+	background: #dcdcdc;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#dcdcdc));
+	background-image: -webkit-linear-gradient(top, #fefefe, #dcdcdc);
+	background-image: -moz-linear-gradient(top, #fefefe, #dcdcdc);
+	background-image: -ms-linear-gradient(top, #fefefe, #dcdcdc);
+	background-image: -o-linear-gradient(top, #fefefe, #dcdcdc);
+	background-image: linear-gradient(top, #fefefe, #dcdcdc);
+}
+/* excerpt */
+.cake-code-dump pre,
+.cake-code-dump pre code {
+	clear: both;
+	font-size: 12px;
+	line-height: 15px;
+	margin: 4px 2px;
+	padding: 4px;
+	overflow: auto;
+}
+.cake-code-dump .code-highlight {
+	display: block;
+	background-color: rgba(255, 255, 0, 0.5);
+}
+.code-coverage-results div.code-line {
+	padding-left:5px;
+	display:block;
+	margin-left:10px;
+}
+.code-coverage-results div.uncovered span.content {
+	background:#ecc;
+}
+.code-coverage-results div.covered span.content {
+	background:#cec;
+}
+.code-coverage-results div.ignored span.content {
+	color:#aaa;
+}
+.code-coverage-results span.line-num {
+	color:#666;
+	display:block;
+	float:left;
+	width:20px;
+	text-align:right;
+	margin-right:5px;
+}
+.code-coverage-results span.line-num strong {
+	color:#666;
+}
+.code-coverage-results div.start {
+	border:1px solid #aaa;
+	border-width:1px 1px 0px 1px;
+	margin-top:30px;
+	padding-top:5px;
+}
+.code-coverage-results div.end {
+	border:1px solid #aaa;
+	border-width:0px 1px 1px 1px;
+	margin-bottom:30px;
+	padding-bottom:5px;
+}
+.code-coverage-results div.realstart {
+	margin-top:0px;
+}
+.code-coverage-results p.note {
+	color:#bbb;
+	padding:5px;
+	margin:5px 0 10px;
+	font-size:10px;
+}
+.code-coverage-results span.result-bad {
+	color: #a00;
+}
+.code-coverage-results span.result-ok {
+	color: #fa0;
+}
+.code-coverage-results span.result-good {
+	color: #0a0;
+}
+
+/* SQL log */
+.cake-sql-log {
+	background: #fff;
+}
+.cake-sql-log td {
+	padding: 4px 8px;
+	text-align: left;
+	font-family: Monaco, Consolas, "Courier New", monospaced;
+}
+.cake-sql-log caption {
+	color:#fff;
 }
